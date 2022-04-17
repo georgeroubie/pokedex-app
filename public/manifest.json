@@ -1,6 +1,6 @@
 {
-  "short_name": "Web app short name",
-  "name": "Web app full name",
+  "short_name": "Pokedex",
+  "name": "Pokedex",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait",
+  "theme_color": "#ee1515",
+  "background_color": "#222224"
 }
