@@ -1,35 +1,38 @@
 import { NavLink as _NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import Logo from '../components/Logo';
+import FireType from '../icons/FireType';
+import Gear from '../icons/Gear';
+import MasterBall from '../icons/MasterBall';
 
 const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  max-width: 500px;
+  margin: 0 auto;
+  height: 40px;
 `;
 
 const NavLink = styled(_NavLink)`
   text-decoration: none;
 
-  &.active {
-    text-decoration: underline;
+  svg {
+    width: 30px;
+    height: 30px;
   }
 `;
 
-const menuItems = [
-  { path: '/', label: 'Home' },
-  { path: '/about', label: 'About' },
-  { path: '/settings', label: 'Settings' },
-];
-
 const Menu = () => (
   <Wrapper>
-    <Logo />
-    {menuItems.map(({ path, label }) => (
-      <NavLink key={path} to={path}>
-        <code>{label}</code>
-      </NavLink>
-    ))}
+    <NavLink to="/">
+      <MasterBall />
+    </NavLink>
+    <NavLink to="/types">
+      <FireType />
+    </NavLink>
+    <NavLink to="/settings">
+      <Gear />
+    </NavLink>
   </Wrapper>
 );
 

@@ -1,27 +1,27 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import PageWrapper from '../components/PageWrapper';
+import PokedexBottom from '../components/PokedexBottom';
+import PokedexTop from '../components/PokedexTop';
+import Pokemon from '../components/pokemon';
+import PokemonDamage from '../components/pokemon/PokemonDamage';
+import Search from '../components/search';
 import { AppContext } from '../state/Context';
 
 const Home = () => {
-  const { state, setUserName } = useContext(AppContext);
-  const { userName } = state;
-
-  const handleOnChange = ({ target }) => {
-    setUserName(target.value);
-  };
+  // eslint-disable-next-line no-unused-vars
+  const { state } = useContext(AppContext);
+  const [currentPokemon, setCurrentPokemon] = useState(null);
 
   return (
     <PageWrapper>
-      <h1>Welcome {userName}</h1>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </p>
-      <input type="text" placeholder="Change your name" onChange={handleOnChange} />
+      <PokedexTop>
+        {currentPokemon ? (
+          <Pokemon currentPokemon={currentPokemon} />
+        ) : (
+          <Search setCurrentPokemon={setCurrentPokemon} />
+        )}
+      </PokedexTop>
+      <PokedexBottom>{currentPokemon && <PokemonDamage currentPokemon={currentPokemon} />}</PokedexBottom>
     </PageWrapper>
   );
 };

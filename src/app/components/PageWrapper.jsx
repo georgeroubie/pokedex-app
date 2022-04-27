@@ -2,10 +2,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.main`
-  text-align: center;
   max-width: 500px;
-  margin: 50px auto;
-  padding: 0 30px;
+  margin: 0 auto;
 `;
 
 const PageWrapper = ({ children }) => <Wrapper>{children}</Wrapper>;
