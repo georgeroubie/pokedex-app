@@ -1,17 +1,12 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import { AppContext } from './../../state/Context';
 import Autocomplete from './Autocomplete';
 
-const Search = ({ setCurrentPokemon }) => {
+const Search = ({ setPokemon }) => {
   const {
     state: { loading },
   } = useContext(AppContext);
   const [pokemonName, setPokemonName] = useState('');
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    if (!loading) inputRef.current.focus();
-  }, [loading, inputRef]);
 
   const handleChange = ({ target }) => {
     setPokemonName(target.value);
@@ -19,15 +14,8 @@ const Search = ({ setCurrentPokemon }) => {
 
   return (
     <div className="search">
-      <input
-        type="text"
-        placeholder="Pokemon name"
-        value={pokemonName}
-        onChange={handleChange}
-        disabled={loading}
-        ref={inputRef}
-      />
-      <Autocomplete searchTerm={pokemonName} setCurrentPokemon={setCurrentPokemon} />
+      <input type="text" placeholder="Pokemon name" value={pokemonName} onChange={handleChange} disabled={loading} />
+      <Autocomplete searchTerm={pokemonName} setPokemon={setPokemon} setPokemonName={setPokemonName} />
     </div>
   );
 };

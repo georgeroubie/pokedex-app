@@ -3,8 +3,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { getPokemonTypes } from './../../helpers/requests';
 import PokemonTypes from './PokemonTypes';
 
-const PokemonDamage = ({ currentPokemon }) => {
-  const { types } = currentPokemon;
+const PokemonDamage = ({ pokemon }) => {
+  const { types } = pokemon;
   // Attack
   const [noDamageTo, setNoDamageTo] = useState([]);
   const [halfDamageTo, setHalfDamageTo] = useState([]);

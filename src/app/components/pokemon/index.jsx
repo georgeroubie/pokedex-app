@@ -1,15 +1,15 @@
 import PokemonTypes from './PokemonTypes';
 
-const Pokemon = ({ currentPokemon }) => {
-  if (!currentPokemon) return null;
+const Pokemon = ({ pokemon }) => {
+  if (!pokemon) return null;
   return (
     <div className="pokemon">
-      <h1>{currentPokemon.name}</h1>
+      <h1>{pokemon.name}</h1>
       <div className="sprites">
-        <img src={currentPokemon.sprites.front_default} alt="" />
-        <img src={currentPokemon.sprites.back_default} alt="" />
+        <img src={pokemon.sprites.front_default} alt="" />
+        <img src={pokemon.sprites.back_default} alt="" />
       </div>
-      <PokemonTypes types={currentPokemon.types.map(({ type }) => type)} />
+      <PokemonTypes types={pokemon.types.map(({ type }) => type)} />
     </div>
   );
 };

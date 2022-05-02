@@ -8,7 +8,6 @@ const useAppState = () => {
   const [state, dispatch] = useReducer(appReducer, {
     theme: getCurrentTheme(),
     loading: true,
-    currentPokemon: null,
     pokemonNames: [],
   });
 
@@ -23,10 +22,6 @@ const useAppState = () => {
 
   const setLoading = (value) => {
     setState(actionTypes.UPDATE_LOADING, value);
-  };
-
-  const setCurrentPokemon = (value) => {
-    setState(actionTypes.UPDATE_CURRENT_POKEMON, value);
   };
 
   const setPokemonNames = (value) => {
@@ -45,7 +40,6 @@ const useAppState = () => {
     state,
     setTheme,
     setLoading,
-    setCurrentPokemon,
   };
 };
 

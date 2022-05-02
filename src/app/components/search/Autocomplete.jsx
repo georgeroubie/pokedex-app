@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../state/Context';
 import { getPokemon } from './../../helpers/requests';
 
-const Autocomplete = ({ setCurrentPokemon, searchTerm }) => {
+const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
   const {
     state: { loading, pokemonNames },
     setLoading,
@@ -13,7 +13,8 @@ const Autocomplete = ({ setCurrentPokemon, searchTerm }) => {
   const loadPokemon = (url) => {
     setLoading(true);
     getPokemon(url).then(({ data }) => {
-      setCurrentPokemon(data);
+      setPokemon(data);
+      setPokemonName('');
       setLoading(false);
     });
   };
@@ -41,6 +42,8 @@ const Autocomplete = ({ setCurrentPokemon, searchTerm }) => {
 
 Autocomplete.propTypes = {
   searchTerm: PropTypes.string,
+  setPokemon: PropTypes.func.isRequired,
+  setPokemonName: PropTypes.func.isRequired,
 };
 
 Autocomplete.defaultProps = {

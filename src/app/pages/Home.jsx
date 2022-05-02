@@ -10,18 +10,21 @@ import { AppContext } from '../state/Context';
 const Home = () => {
   // eslint-disable-next-line no-unused-vars
   const { state } = useContext(AppContext);
-  const [currentPokemon, setCurrentPokemon] = useState(null);
+  const [pokemon, setPokemon] = useState(null);
 
   return (
     <PageWrapper>
       <PokedexTop>
-        {currentPokemon ? (
-          <Pokemon currentPokemon={currentPokemon} />
-        ) : (
-          <Search setCurrentPokemon={setCurrentPokemon} />
-        )}
+        <Search setPokemon={setPokemon} />
       </PokedexTop>
-      <PokedexBottom>{currentPokemon && <PokemonDamage currentPokemon={currentPokemon} />}</PokedexBottom>
+      <PokedexBottom>
+        {pokemon && (
+          <>
+            <Pokemon pokemon={pokemon} />
+            <PokemonDamage pokemon={pokemon} />
+          </>
+        )}
+      </PokedexBottom>
     </PageWrapper>
   );
 };
