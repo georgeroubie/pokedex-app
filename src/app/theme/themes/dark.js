@@ -4,7 +4,7 @@ const darkTheme = {
   colors: {
     backgroundPrimary: '#212121',
     backgroundSecondary: '#171717',
-    borderPrimary: '#000000',
+    borderPrimary: '#fff',
     textPrimary: '#dfdfdf',
     successBackgroundPrimary: '#00bc8b',
     warningBackgroundPrimary: '#ffc200',

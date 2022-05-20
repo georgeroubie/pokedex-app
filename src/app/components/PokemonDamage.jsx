@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { getPokemonTypes } from './../../helpers/requests';
+import { getPokemonTypes } from './../helpers/requests';
 import PokemonTypes from './PokemonTypes';
+import Description from './typography/Description';
+import Subtitle from './typography/Subtitle';
 
 const PokemonDamage = ({ pokemon }) => {
   const { types } = pokemon;
@@ -38,7 +40,6 @@ const PokemonDamage = ({ pokemon }) => {
   const calculateDamages = useCallback((responses) => {
     if (responses.length === 1) {
       const typeData = responses[0].data.damage_relations;
-      console.log(typeData);
       setNoDamageTo(typeData.no_damage_to);
       setHalfDamageTo(typeData.half_damage_to);
       setDoubleDamageTo(typeData.double_damage_to);
@@ -62,40 +63,46 @@ const PokemonDamage = ({ pokemon }) => {
   }, [types, calculateDamages]);
 
   return (
-    <div className="damages">
-      <h3>Attack</h3>
+    <>
+      <Subtitle>Attack</Subtitle>
       {Boolean(noDamageTo.length) && (
-        <div className="damage">
-          No effect: <PokemonTypes types={noDamageTo} />
-        </div>
+        <>
+          <Description>No effect:</Description>
+          <PokemonTypes types={noDamageTo} />
+        </>
       )}
       {Boolean(halfDamageTo.length) && (
-        <div className="damage">
-          Not very effective: <PokemonTypes types={halfDamageTo} />
-        </div>
+        <>
+          <Description>Not very effective:</Description>
+          <PokemonTypes types={halfDamageTo} />
+        </>
       )}
       {Boolean(doubleDamageTo.length) && (
-        <div className="damage">
-          Super-effective: <PokemonTypes types={doubleDamageTo} />
-        </div>
+        <>
+          <Description>Super-effective:</Description>
+          <PokemonTypes types={doubleDamageTo} />
+        </>
       )}
-      <h3>Defence</h3>
+      <Subtitle>Defence</Subtitle>
       {Boolean(noDamageFrom.length) && (
-        <div className="damage">
-          No effect: <PokemonTypes types={noDamageFrom} />
-        </div>
+        <>
+          <Description>No effect:</Description>
+          <PokemonTypes types={noDamageFrom} />
+        </>
       )}
       {Boolean(halfDamageFrom.length) && (
-        <div className="damage">
-          Not very effective: <PokemonTypes types={halfDamageFrom} />
-        </div>
+        <>
+          <Description>Not very effective:</Description>
+          <PokemonTypes types={halfDamageFrom} />
+        </>
       )}
       {Boolean(doubleDamageFrom.length) && (
-        <div className="damage">
-          Super-effective: <PokemonTypes types={doubleDamageFrom} />
-        </div>
+        <>
+          <Description>Super-effective:</Description>
+          <PokemonTypes types={doubleDamageFrom} />
+        </>
       )}
-    </div>
+    </>
   );
 };
 

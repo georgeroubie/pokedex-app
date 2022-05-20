@@ -2,8 +2,8 @@ import { useContext, useState } from 'react';
 import PageWrapper from '../components/PageWrapper';
 import PokedexBottom from '../components/PokedexBottom';
 import PokedexTop from '../components/PokedexTop';
-import Pokemon from '../components/pokemon';
-import PokemonDamage from '../components/pokemon/PokemonDamage';
+import Pokemon from '../components/Pokemon';
+import PokemonDamage from '../components/PokemonDamage';
 import Search from '../components/search';
 import { AppContext } from '../state/Context';
 

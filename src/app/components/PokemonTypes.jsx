@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const COLORS = {
   normal: '#C6C6A7',
@@ -21,14 +22,25 @@ const COLORS = {
   fairy: '#F4BDC9',
 };
 
+const Wrapper = styled.div`
+  margin-bottom: ${({ theme: { spacing } }) => spacing.normal};
+`;
+
+const Type = styled.span`
+  padding: ${({ theme: { spacing } }) => spacing.small};
+  color: #000;
+  font-weight: bold;
+  display: inline-block;
+`;
+
 const PokemonTypes = ({ types }) => (
-  <div className="types">
+  <Wrapper>
     {types.map(({ name, url }) => (
-      <span key={url} style={{ backgroundColor: COLORS[name] }}>
+      <Type key={url} style={{ backgroundColor: COLORS[name] }}>
         {name}
-      </span>
+      </Type>
     ))}
-  </div>
+  </Wrapper>
 );
 
 PokemonTypes.propTypes = {
