@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import PageWrapper from '../components/PageWrapper';
+import PokedexBottom from '../components/PokedexBottom';
+import PokedexTop from '../components/PokedexTop';
 import { AppContext } from '../state/Context';
 import { DARK_THEME_KEY } from '../theme/themes/dark';
 import { LIGHT_THEME_KEY } from '../theme/themes/light';
@@ -31,11 +33,15 @@ const Settings = () => {
 
   return (
     <PageWrapper>
-      <h1>Settings</h1>
-      <Selection>
-        <Checkbox type="checkbox" id={id} name={id} checked={theme === DARK_THEME_KEY} onChange={handleOnChange} />
-        <Label htmlFor={id}>Dark theme</Label>
-      </Selection>
+      <PokedexTop>
+        <h1>Settings</h1>
+      </PokedexTop>
+      <PokedexBottom>
+        <Selection>
+          <Checkbox type="checkbox" id={id} name={id} checked={theme === DARK_THEME_KEY} onChange={handleOnChange} />
+          <Label htmlFor={id}>Dark theme</Label>
+        </Selection>
+      </PokedexBottom>
     </PageWrapper>
   );
 };

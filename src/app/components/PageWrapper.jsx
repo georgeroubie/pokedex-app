@@ -6,7 +6,7 @@ const Wrapper = styled.main`
   margin: 0 auto;
   background-color: #ee1515;
   padding: 24px;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 25px);
   overflow-y: auto;
 `;
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Circle from './Circle';
 
 const Main = styled.div`
-  height: calc(35vh - 112px);
+  height: calc(35vh - 97px);
   margin-bottom: 24px;
   position: relative;
 `;
