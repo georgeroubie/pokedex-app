@@ -9,6 +9,7 @@ const useAppState = () => {
     theme: getCurrentTheme(),
     loading: true,
     pokemonNames: [],
+    pokemon: null,
   });
 
   const setState = (type, value) => {
@@ -18,6 +19,10 @@ const useAppState = () => {
   const setTheme = (value) => {
     saveThemeSelection(value);
     setState(actionTypes.UPDATE_THEME_SELECTION, value);
+  };
+
+  const setPokemon = (value) => {
+    setState(actionTypes.UPDATE_POKEMON, value);
   };
 
   const setLoading = (value) => {
@@ -40,6 +45,7 @@ const useAppState = () => {
     state,
     setTheme,
     setLoading,
+    setPokemon,
   };
 };
 

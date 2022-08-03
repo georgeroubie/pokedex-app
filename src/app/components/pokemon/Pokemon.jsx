@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { AppContext } from '../../state/Context';
 import Description from '../typography/Description';
 import Title from '../typography/Title';
 import PokemonDamage from './PokemonDamage';
@@ -15,8 +17,12 @@ const ImagesWrapper = styled.div`
 
 const Image = styled.img``;
 
-const Pokemon = ({ pokemon }) => {
+const Pokemon = () => {
+  const { state } = useContext(AppContext);
+  const { pokemon } = state;
+
   if (!pokemon) return null;
+
   const types = pokemon.types.map(({ type }) => type);
 
   return (

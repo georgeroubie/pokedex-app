@@ -14,9 +14,10 @@ const Input = styled.input`
   border-bottom: 2px solid ${({ theme: { colors } }) => colors.borderPrimary};
 `;
 
-const Search = ({ setPokemon }) => {
+const Search = () => {
   const {
     state: { loading },
+    setPokemon,
   } = useContext(AppContext);
   const [pokemonName, setPokemonName] = useState('');
 

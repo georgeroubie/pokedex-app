@@ -17,6 +17,11 @@ const appReducer = (state, { type, value }) => {
         ...state,
         pokemonNames: value,
       };
+    case actionTypes.UPDATE_POKEMON:
+      return {
+        ...state,
+        pokemon: value,
+      };
     default:
       return state;
   }
