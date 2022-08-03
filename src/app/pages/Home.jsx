@@ -1,9 +1,8 @@
 import { useContext, useState } from 'react';
-import PageWrapper from '../components/PageWrapper';
-import PokedexBottom from '../components/PokedexBottom';
-import PokedexTop from '../components/PokedexTop';
-import Pokemon from '../components/Pokemon';
-import PokemonDamage from '../components/PokemonDamage';
+import PageWrapper from '../components/layout/PageWrapper';
+import PokedexBottom from '../components/layout/PokedexBottom';
+import PokedexTop from '../components/layout/PokedexTop';
+import Pokemon from '../components/pokemon/Pokemon';
 import Search from '../components/search';
 import { AppContext } from '../state/Context';
 
@@ -17,14 +16,7 @@ const Home = () => {
       <PokedexTop>
         <Search setPokemon={setPokemon} />
       </PokedexTop>
-      <PokedexBottom>
-        {pokemon && (
-          <>
-            <Pokemon pokemon={pokemon} />
-            <PokemonDamage pokemon={pokemon} />
-          </>
-        )}
-      </PokedexBottom>
+      <PokedexBottom>{pokemon && <Pokemon pokemon={pokemon} />}</PokedexBottom>
     </PageWrapper>
   );
 };

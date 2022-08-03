@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import Description from '../typography/Description';
+import Title from '../typography/Title';
+import PokemonDamage from './PokemonDamage';
 import PokemonTypes from './PokemonTypes';
-import Description from './typography/Description';
-import Title from './typography/Title';
 
 const ImagesWrapper = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ const Pokemon = ({ pokemon }) => {
       </ImagesWrapper>
       <Description>Types:</Description>
       <PokemonTypes types={types} />
+      <PokemonDamage pokemon={pokemon} />
     </>
   );
 };

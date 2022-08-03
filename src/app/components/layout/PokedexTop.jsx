@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Circle from './Circle';
+import Circle from '../shapes/Circle';
 
 const Main = styled.div`
   height: calc(35vh - 97px);

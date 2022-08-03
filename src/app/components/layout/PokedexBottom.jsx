@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import _Circle from './Circle';
+import _Circle from '../shapes/Circle';
 
 const Main = styled.div`
   background-color: #dfdfdf;

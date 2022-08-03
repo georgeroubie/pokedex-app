@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { getPokemonTypes } from './../helpers/requests';
+import { getPokemonTypes } from '../../helpers/requests';
+import Description from '../typography/Description';
+import Subtitle from '../typography/Subtitle';
 import PokemonTypes from './PokemonTypes';
-import Description from './typography/Description';
-import Subtitle from './typography/Subtitle';
 
 const PokemonDamage = ({ pokemon }) => {
   const { types } = pokemon;

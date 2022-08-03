@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import PageWrapper from '../components/PageWrapper';
-import PokedexBottom from '../components/PokedexBottom';
-import PokedexTop from '../components/PokedexTop';
+import PageWrapper from '../components/layout/PageWrapper';
+import PokedexBottom from '../components/layout/PokedexBottom';
+import PokedexTop from '../components/layout/PokedexTop';
+import Title from '../components/typography/Title';
 import { AppContext } from '../state/Context';
 import { DARK_THEME_KEY } from '../theme/themes/dark';
 import { LIGHT_THEME_KEY } from '../theme/themes/light';
@@ -34,7 +35,7 @@ const Settings = () => {
   return (
     <PageWrapper>
       <PokedexTop>
-        <h1>Settings</h1>
+        <Title>Settings</Title>
       </PokedexTop>
       <PokedexBottom>
         <Selection>
