@@ -1,9 +1,12 @@
+import baseTheme from './base';
+
 const DARK_THEME_KEY = 'dark';
 
 const darkTheme = {
+  ...baseTheme,
   colors: {
     backgroundPrimary: '#212121',
-    backgroundSecondary: '#171717',
+    backgroundSecondary: '#ee1515',
     borderPrimary: '#fff',
     textPrimary: '#dfdfdf',
     successBackgroundPrimary: '#00bc8b',
@@ -12,12 +15,6 @@ const darkTheme = {
     dangerBackgroundPrimary: '#ff606A',
     dangerTextPrimary: '#dfdfdf',
     dangerBackgroundSecondary: '#fa747c',
-  },
-  spacing: {
-    small: '8px',
-    normal: '15px',
-    large: '30px',
-    xlarge: '45px',
   },
 };
 

@@ -9,7 +9,7 @@ const base = css`
 
   html,
   body {
-    background-color: #ee1515;
+    background-color: ${({ theme: { colors } }) => colors.backgroundPrimary};
   }
 `;
 
