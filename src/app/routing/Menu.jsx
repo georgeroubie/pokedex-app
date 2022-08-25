@@ -9,7 +9,7 @@ const Wrapper = styled.nav`
   justify-content: flex-end;
   max-width: 500px;
   margin: 0 auto;
-  height: 25px;
+  height: ${({ theme: { layout } }) => layout.menuHeight};
 `;
 
 const NavLink = styled(_NavLink)`

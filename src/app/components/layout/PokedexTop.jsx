@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import Circle from '../shapes/Circle';
 
 const Main = styled.div`
-  height: calc(35vh - 97px);
-  margin-bottom: 24px;
+  height: calc(${({ theme: { spacing, layout } }) => `${layout.topHeight} - ${layout.menuHeight} - ${spacing.large}`});
+  padding-bottom: ${({ theme: { spacing } }) => spacing.large};
   position: relative;
 `;
 
 const Frame = styled.div`
-  border: 4px solid #000;
+  border: ${({ theme: { border } }) => border.size} solid ${({ theme: { colors } }) => colors.borderPrimary};
   background-color: ${({ theme: { colors } }) => colors.backgroundPrimary};
   width: 100%;
   height: 100%;
@@ -19,14 +19,14 @@ const Frame = styled.div`
 
 const Loader = styled.div`
   position: absolute;
-  top: -24px;
+  top: -${({ theme: { spacing } }) => spacing.large};
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 24px;
+  height: ${({ theme: { spacing } }) => spacing.large};
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  gap: ${({ theme: { spacing } }) => spacing.small};
 `;
 
 const PokedexTop = ({ children }) => (

@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.main`
-  max-width: 500px;
+  max-width: ${({ theme: { layout } }) => layout.containerWidth};
   margin: 0 auto;
-  background-color: #ee1515;
-  padding: 24px;
-  height: calc(100vh - 25px);
+  background-color: ${({ theme: { colors } }) => colors.backgroundSecondary};
+  padding: ${({ theme: { spacing } }) => spacing.large};
+  height: calc(100vh - ${({ theme: { layout } }) => layout.menuHeight});
   overflow-y: auto;
 `;
 

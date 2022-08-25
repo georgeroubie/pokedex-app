@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import _Circle from '../shapes/Circle';
 
 const Main = styled.div`
+  position: relative;
+  height: calc(${({ theme: { spacing, layout } }) => `${layout.bottomHeight} - ${spacing.large}`});
+  border-radius: ${({ theme: { border } }) => border.radius};
   background-color: #dfdfdf;
   padding: 30px 20px 40px;
-  height: 65vh;
-  border-radius: 5px;
-  position: relative;
 
   &:after {
     content: '';
@@ -16,7 +16,7 @@ const Main = styled.div`
     height: 0;
     border-style: solid;
     border-width: 30px 0 0 30px;
-    border-color: transparent transparent transparent #ee1515;
+    border-color: transparent transparent transparent ${({ theme: { colors } }) => colors.backgroundSecondary};
     position: absolute;
     bottom: 0;
     left: 0;
@@ -45,7 +45,7 @@ const BottomCircle = styled(_Circle)`
 
 const Speaker = styled.div`
   position: absolute;
-  bottom: 6px;
+  bottom: 14px;
   right: 20px;
   width: 40px;
 `;
@@ -53,13 +53,12 @@ const Speaker = styled.div`
 const Line = styled.div`
   height: 1px;
   background-color: #000;
-  margin-bottom: 5px;
+  margin-bottom: ${({ theme: { spacing } }) => spacing.xxsmall};
 `;
 
 const Frame = styled.div`
-  border: 4px solid #000;
-  border-radius: 5px;
-  padding: 16px;
+  border: ${({ theme: { border } }) => border.size} solid ${({ theme: { colors } }) => colors.borderPrimary};
+  padding: ${({ theme: { spacing } }) => spacing.normal};
   background-color: ${({ theme: { colors } }) => colors.backgroundPrimary};
   width: 100%;
   height: 100%;
