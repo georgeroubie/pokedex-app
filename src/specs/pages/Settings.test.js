@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import Home from '../../app/pages/Home';
+import Settings from '../../app/pages/Settings';
 import TestWrapper from '../Wrapper';
 
 test('renders title', () => {
   render(
     <TestWrapper>
-      <Home />
+      <Settings />
     </TestWrapper>,
   );
-  const titleElement = screen.getByText('Welcome friend');
+  const titleElement = screen.getByText('Settings');
   expect(titleElement).toBeInTheDocument();
 });
