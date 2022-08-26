@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { AppContext } from '../../state/Context';
 import { getPokemon } from './../../helpers/requests';
+
+const Wrapper = styled.div``;
+
+const Name = styled.button``;
 
 const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
   const {
@@ -30,13 +35,13 @@ const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
   }, [searchTerm, pokemonNames]);
 
   return (
-    <div className="autocomplete">
+    <Wrapper>
       {filteredPokemonNames.map(({ name, url }) => (
-        <button type="button" onClick={() => loadPokemon(url)} key={url} disabled={loading}>
+        <Name type="button" onClick={() => loadPokemon(url)} key={url} disabled={loading}>
           {name}
-        </button>
+        </Name>
       ))}
-    </div>
+    </Wrapper>
   );
 };
 
