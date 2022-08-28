@@ -8,6 +8,7 @@ const darkTheme = {
     backgroundPrimary: '#212121',
     backgroundSecondary: '#ee1515',
     borderPrimary: '#fff',
+    borderSecondary: '#424242',
     textPrimary: '#dfdfdf',
   },
 };

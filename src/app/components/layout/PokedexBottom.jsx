@@ -6,7 +6,7 @@ const Main = styled.div`
   position: relative;
   height: calc(${({ theme: { spacing, layout } }) => `${layout.bottomHeight} - ${spacing.large}`});
   border-radius: ${({ theme: { border } }) => border.radius};
-  background-color: #dfdfdf;
+  background-color: ${({ theme: { colors } }) => colors.borderSecondary};
   padding: ${({ theme: { spacing } }) => `${spacing.large} ${spacing.normal} ${spacing.xlarge}`};
 
   &:after {
@@ -52,7 +52,7 @@ const Speaker = styled.div`
 
 const Line = styled.div`
   height: 1px;
-  background-color: #000;
+  background-color: ${({ theme: { colors } }) => colors.borderPrimary};
   margin-bottom: ${({ theme: { spacing } }) => spacing.xxsmall};
 `;
 

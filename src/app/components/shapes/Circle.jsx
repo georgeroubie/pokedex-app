@@ -8,8 +8,8 @@ const Wrapper = styled.span`
   display: inline-block;
   width: 10px;
   height: 10px;
-  background-color: #f00;
-  border: 1px solid #000;
+  background-color: ${({ theme: { colors } }) => colors.backgroundSecondary};
+  border: 1px solid ${({ theme: { colors } }) => colors.borderPrimary};
   border-radius: 50%;
 
   ${({ $loading }) =>
