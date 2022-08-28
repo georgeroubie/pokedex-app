@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.h2`
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-  margin: 0 0 ${({ theme: { spacing } }) => spacing.small};
+  font-size: ${({ theme: { fontSize } }) => fontSize.large};
+  line-height: ${({ theme: { lineHeight } }) => lineHeight.large};
+  font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
+  margin: 0 0 ${({ theme: { spacing } }) => spacing.xsmall};
 `;
 
 const Subtitle = ({ children }) => <Wrapper>{children}</Wrapper>;
