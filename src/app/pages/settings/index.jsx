@@ -5,10 +5,10 @@ import PokedexBottom from '../../components/layout/PokedexBottom';
 import PokedexTop from '../../components/layout/PokedexTop';
 import Description from '../../components/typography/Description';
 import Subtitle from '../../components/typography/Subtitle';
-import Title from '../../components/typography/Title';
 import { AppContext } from '../../state/Context';
 import { DARK_THEME_KEY } from '../../theme/themes/dark';
 import { LIGHT_THEME_KEY } from '../../theme/themes/light';
+import Paypal from './Paypal';
 
 const TopWrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
@@ -17,6 +17,7 @@ const TopWrapper = styled.div`
 const Selection = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: ${({ theme: { spacing } }) => spacing.large};
 `;
 
 const Checkbox = styled.input`
@@ -45,11 +46,15 @@ const Settings = () => {
     <PageWrapper>
       <PokedexTop>
         <TopWrapper>
-          <Title>Settings</Title>
+          <Subtitle>Settings</Subtitle>
           <Selection>
             <Checkbox type="checkbox" id={id} name={id} checked={theme === DARK_THEME_KEY} onChange={handleOnChange} />
             <Label htmlFor={id}>Dark theme</Label>
           </Selection>
+          <Subtitle>Donation</Subtitle>
+          <Description>
+            Buy me a coffee or a beer: <Paypal />
+          </Description>
         </TopWrapper>
       </PokedexTop>
       <PokedexBottom>

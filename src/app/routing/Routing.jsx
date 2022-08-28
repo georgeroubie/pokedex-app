@@ -5,6 +5,8 @@ import Home from '../pages/home';
 // Lazy load components
 const Settings = lazy(() => import('../pages/settings'));
 const NotFound = lazy(() => import('../pages/not-found'));
+const CompleteDonation = lazy(() => import('../pages/donation/Complete'));
+const CancelDonation = lazy(() => import('../pages/donation/Cancel'));
 
 const Loader = ({ children }) => <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>;
 
@@ -16,6 +18,22 @@ const Routing = () => (
       element={
         <Loader>
           <Settings />
+        </Loader>
+      }
+    />
+    <Route
+      path="/complete-donation"
+      element={
+        <Loader>
+          <CompleteDonation />
+        </Loader>
+      }
+    />
+    <Route
+      path="/cancel-donation"
+      element={
+        <Loader>
+          <CancelDonation />
         </Loader>
       }
     />
