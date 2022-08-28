@@ -6,8 +6,8 @@ import { setAnimation } from './../../theme/styles/helpers';
 
 const Wrapper = styled.span`
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: ${({ theme: { spacing } }) => spacing.small};
+  height: ${({ theme: { spacing } }) => spacing.small};
   background-color: ${({ theme: { colors } }) => colors.backgroundSecondary};
   border: 1px solid ${({ theme: { colors } }) => colors.borderPrimary};
   border-radius: 50%;
@@ -27,8 +27,8 @@ const Wrapper = styled.span`
   ${({ $big }) =>
     $big &&
     css`
-      width: 15px;
-      height: 15px;
+      width: ${({ theme: { spacing } }) => spacing.normal};
+      height: ${({ theme: { spacing } }) => spacing.normal};
     `}
 `;
 

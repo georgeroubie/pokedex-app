@@ -7,7 +7,7 @@ const Main = styled.div`
   height: calc(${({ theme: { spacing, layout } }) => `${layout.bottomHeight} - ${spacing.large}`});
   border-radius: ${({ theme: { border } }) => border.radius};
   background-color: ${({ theme: { colors } }) => colors.borderSecondary};
-  padding: ${({ theme: { spacing } }) => `${spacing.large} ${spacing.normal} ${spacing.xlarge}`};
+  padding: ${({ theme: { spacing } }) => `${spacing.large} ${spacing.large} ${spacing.xlarge}`};
 
   &:after {
     content: '';
@@ -40,13 +40,13 @@ const TopCircle = styled(_Circle)``;
 const BottomCircle = styled(_Circle)`
   position: absolute;
   bottom: ${({ theme: { spacing } }) => spacing.small};
-  left: ${({ theme: { spacing } }) => spacing.normal};
+  left: ${({ theme: { spacing } }) => spacing.large};
 `;
 
 const Speaker = styled.div`
   position: absolute;
   bottom: ${({ theme: { spacing } }) => spacing.xsmall};
-  right: ${({ theme: { spacing } }) => spacing.normal};
+  right: ${({ theme: { spacing } }) => spacing.large};
   width: 40px;
 `;
 
