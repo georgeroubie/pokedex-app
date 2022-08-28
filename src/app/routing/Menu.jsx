@@ -34,13 +34,13 @@ const NavLink = styled(_NavLink)`
 `;
 
 const Gear = styled(_Gear)`
-  width: 21px;
-  height: 21px;
+  width: 1.6rem;
+  height: 1.6rem;
 `;
 
 const Pokeball = styled(_Pokeball)`
-  width: 24px;
-  height: 24px;
+  width: 1.8rem;
+  height: 1.8rem;
 `;
 
 const Menu = () => (
