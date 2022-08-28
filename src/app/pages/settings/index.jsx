@@ -60,8 +60,8 @@ const Settings = () => {
       <PokedexBottom>
         <Subtitle>About</Subtitle>
         <Description>
-          Pokedex app that will help you in your pokemon journey. The application is created by George Roubie (me). You
-          can find the code of this web application on my GitHub page. If you like it give the repository a star on
+          A Pokedex app that will help you in your pokemon journey. The application is created by George Roubie (me).
+          You can find the code of this web application on my GitHub page. If you like it give the repository a star on
           <Hyperlink href="https://github.com/georgeroubie/pokedex-app" target="_blank" rel="noreferrer">
             GitHub
           </Hyperlink>
@@ -74,6 +74,14 @@ const Settings = () => {
             Medium
           </Hyperlink>
           . Thank you for using it, have fun!
+        </Description>
+
+        <Subtitle>Data</Subtitle>
+        <Description>
+          All the data are provided from the
+          <Hyperlink href="https://pokeapi.co" target="_blank" rel="noreferrer">
+            pokeapi
+          </Hyperlink>
         </Description>
 
         <Subtitle>Privacy</Subtitle>
