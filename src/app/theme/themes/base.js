@@ -40,7 +40,7 @@ const baseTheme = {
     extraBlack: 950,
   },
   border: {
-    radius: '5px',
+    radius: '8px',
     size: '4px',
   },
 };

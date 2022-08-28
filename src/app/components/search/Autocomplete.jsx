@@ -4,9 +4,22 @@ import styled from 'styled-components';
 import { AppContext } from '../../state/Context';
 import { getPokemon } from './../../helpers/requests';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: ${({ theme: { spacing } }) => spacing.xsmall};
+  padding: ${({ theme: { spacing } }) => spacing.normal};
+`;
 
-const Name = styled.button``;
+const Name = styled.button`
+  border-radius: 0;
+  border: 0;
+  padding: ${({ theme: { spacing } }) => spacing.xsmall};
+  background-color: ${({ theme: { colors } }) => colors.textPrimary};
+  color: ${({ theme: { colors } }) => colors.backgroundPrimary};
+  width: max-content;
+`;
 
 const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
   const {

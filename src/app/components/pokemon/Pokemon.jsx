@@ -24,14 +24,17 @@ const Pokemon = () => {
   if (!pokemon) return null;
 
   const types = pokemon.types.map(({ type }) => type);
+  const { sprites } = pokemon;
 
   return (
     <>
       <Title>{pokemon.name}</Title>
-      <ImagesWrapper>
-        <Image src={pokemon.sprites.front_default} alt={`${pokemon.name} front image`} />
-        <Image src={pokemon.sprites.back_default} alt={`${pokemon.name} back image`} />
-      </ImagesWrapper>
+      {sprites.front_default && sprites.back_default && (
+        <ImagesWrapper>
+          <Image src={sprites.front_default} alt={`${pokemon.name} front image`} />
+          <Image src={sprites.back_default} alt={`${pokemon.name} back image`} />
+        </ImagesWrapper>
+      )}
       <Description>Types:</Description>
       <PokemonTypes types={types} />
       <PokemonDamage pokemon={pokemon} />
