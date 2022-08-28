@@ -5,6 +5,7 @@ import Home from '../pages/home';
 // Lazy load components
 const Settings = lazy(() => import('../pages/settings'));
 const NotFound = lazy(() => import('../pages/not-found'));
+const MiniGame = lazy(() => import('../pages/mini-game'));
 const CompleteDonation = lazy(() => import('../pages/donation/Complete'));
 const CancelDonation = lazy(() => import('../pages/donation/Cancel'));
 
@@ -13,6 +14,14 @@ const Loader = ({ children }) => <Suspense fallback={<div>Loading...</div>}>{chi
 const Routing = () => (
   <Routes>
     <Route path="/" element={<Home />} />
+    <Route
+      path="/mini-game"
+      element={
+        <Loader>
+          <MiniGame />
+        </Loader>
+      }
+    />
     <Route
       path="/settings"
       element={

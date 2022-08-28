@@ -1,6 +1,7 @@
 import { NavLink as _NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Circle from '../components/shapes/Circle';
+import _GameBoy from '../icons/GameBoy';
 import _Gear from '../icons/Gear';
 import _Pokeball from '../icons/Pokeball';
 
@@ -24,7 +25,7 @@ const Loader = styled.div`
 
 const NavLinkWrapper = styled.div`
   display: flex;
-  gap: ${({ theme: { spacing } }) => spacing.small};
+  gap: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
 const NavLink = styled(_NavLink)`
@@ -36,6 +37,11 @@ const NavLink = styled(_NavLink)`
 const Gear = styled(_Gear)`
   width: 1.6rem;
   height: 1.6rem;
+`;
+
+const GameBoy = styled(_GameBoy)`
+  width: 1.5rem;
+  height: 1.5rem;
 `;
 
 const Pokeball = styled(_Pokeball)`
@@ -53,6 +59,9 @@ const Menu = () => (
     <NavLinkWrapper>
       <NavLink to="/">
         <Pokeball />
+      </NavLink>
+      <NavLink to="/mini-game">
+        <GameBoy />
       </NavLink>
       <NavLink to="/settings">
         <Gear />

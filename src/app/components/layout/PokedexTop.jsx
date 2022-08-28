@@ -8,6 +8,7 @@ const Main = styled.div`
 
 const Frame = styled.div`
   border: ${({ theme: { border, colors } }) => `${border.size} solid ${colors.borderPrimary}`};
+  border-radius: ${({ theme: { border } }) => border.radius};
   background-color: ${({ theme: { colors } }) => colors.backgroundPrimary};
   width: 100%;
   height: 100%;
