@@ -7,7 +7,7 @@ const Main = styled.div`
   height: calc(${({ theme: { spacing, layout } }) => `${layout.bottomHeight} - ${spacing.large}`});
   border-radius: ${({ theme: { border } }) => border.radius};
   background-color: #dfdfdf;
-  padding: 30px 20px 40px;
+  padding: ${({ theme: { spacing } }) => `${spacing.large} ${spacing.normal} ${spacing.xlarge}`};
 
   &:after {
     content: '';
@@ -15,7 +15,7 @@ const Main = styled.div`
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 30px 0 0 30px;
+    border-width: ${({ theme: { spacing } }) => `${spacing.large} 0 0 ${spacing.large}`};
     border-color: transparent transparent transparent ${({ theme: { colors } }) => colors.backgroundSecondary};
     position: absolute;
     bottom: 0;
@@ -28,25 +28,25 @@ const TopCircleContainer = styled.div`
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  height: 30px;
-  width: 70px;
+  height: ${({ theme: { spacing } }) => spacing.large};
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  gap: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
 const TopCircle = styled(_Circle)``;
 
 const BottomCircle = styled(_Circle)`
   position: absolute;
-  bottom: 17px;
-  left: 20px;
+  bottom: ${({ theme: { spacing } }) => spacing.small};
+  left: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
 const Speaker = styled.div`
   position: absolute;
-  bottom: 14px;
-  right: 20px;
+  bottom: ${({ theme: { spacing } }) => spacing.xsmall};
+  right: ${({ theme: { spacing } }) => spacing.normal};
   width: 40px;
 `;
 

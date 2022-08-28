@@ -10,8 +10,8 @@ const ImagesWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid ${({ theme: { colors } }) => colors.borderPrimary};
-  border-radius: 8px;
+  border: ${({ theme: { border, colors } }) => `${border.size} solid ${colors.borderPrimary}`};
+  border-radius: ${({ theme: { border } }) => border.radius};
   margin-bottom: ${({ theme: { spacing } }) => spacing.normal};
 `;
 

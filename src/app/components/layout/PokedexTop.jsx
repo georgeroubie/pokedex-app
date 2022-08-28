@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Circle from '../shapes/Circle';
 
 const Main = styled.div`
-  height: calc(${({ theme: { spacing, layout } }) => `${layout.topHeight} - ${layout.menuHeight} - ${spacing.large}`});
-  padding-bottom: ${({ theme: { spacing } }) => spacing.large};
-  position: relative;
+  height: calc(${({ theme: { spacing, layout } }) => `${layout.topHeight} - ${layout.menuHeight}`});
+  padding-bottom: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
 const Frame = styled.div`
@@ -17,26 +15,9 @@ const Frame = styled.div`
   overflow-y: auto;
 `;
 
-const Loader = styled.div`
-  position: absolute;
-  top: -${({ theme: { spacing } }) => spacing.large};
-  left: 50%;
-  transform: translateX(-50%);
-  height: ${({ theme: { spacing } }) => spacing.large};
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: ${({ theme: { spacing } }) => spacing.small};
-`;
-
 const PokedexTop = ({ children }) => (
   <Main>
     <Frame>{children}</Frame>
-    <Loader>
-      <Circle />
-      <Circle color="yellow" />
-      <Circle color="green" />
-    </Loader>
   </Main>
 );
 

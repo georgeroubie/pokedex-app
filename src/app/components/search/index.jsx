@@ -10,8 +10,8 @@ const Input = styled.input`
   outline: none;
   background-color: ${({ theme: { colors } }) => colors.backgroundPrimary};
   color: ${({ theme: { colors } }) => colors.textPrimary};
-  padding: 14px;
-  border-bottom: 2px solid ${({ theme: { colors } }) => colors.borderPrimary};
+  padding: ${({ theme: { spacing } }) => `${spacing.small} ${spacing.normal}`};
+  border-bottom: ${({ theme: { border, colors } }) => `${border.size} solid ${colors.borderPrimary}`};
 `;
 
 const Search = () => {
