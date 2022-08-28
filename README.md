@@ -1,6 +1,6 @@
 # General information
 
-[Pokedex app](https://pokedex.click) that will help you in your pokemon journey.
+A [Pokedex app](https://pokedex.click) that will help you in your pokemon journey.
 
 If you like it give the repository a star and follow me on [LinkedIn](https://www.linkedin.com/in/georgeroubie) and [Medium](https://george-roubie.medium.com). 
 
