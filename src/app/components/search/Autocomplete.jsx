@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { AppContext } from '../../state/Context';
-import { getPokemon } from './../../helpers/requests';
+import { getPokemon, getPokemonSpecies } from './../../helpers/requests';
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,10 +30,15 @@ const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
 
   const loadPokemon = (url) => {
     setLoading(true);
-    getPokemon(url).then(({ data }) => {
-      setPokemon(data);
-      setPokemonName('');
-      setLoading(false);
+    getPokemon(url).then(({ data: pokemon }) => {
+      getPokemonSpecies(pokemon.id).then(({ data: species }) => {
+        setPokemon({
+          ...pokemon,
+          ...species,
+        });
+        setPokemonName('');
+        setLoading(false);
+      });
     });
   };
 

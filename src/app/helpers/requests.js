@@ -30,8 +30,10 @@ const cacheGet = (url) =>
 
 const getAllPokemonNames = () => cacheGet(`${API_URL}pokemon?limit=100000&offset=0`);
 
+const getPokemonSpecies = (id) => cacheGet(`${API_URL}pokemon-species/${id}`);
+
 const getPokemon = (url) => cacheGet(url);
 
 const getPokemonTypes = (urls) => axios.all(urls.map((url) => cacheGet(url)));
 
-export { getAllPokemonNames, getPokemon, getPokemonTypes };
+export { getAllPokemonNames, getPokemon, getPokemonTypes, getPokemonSpecies };
