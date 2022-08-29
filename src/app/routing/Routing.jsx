@@ -1,5 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import PageWrapper from '../components/layout/PageWrapper';
+import Description from '../components/typography/Description';
 import Home from '../pages/home';
 
 // Lazy load components
@@ -9,7 +11,17 @@ const MiniGames = lazy(() => import('../pages/mini-games'));
 const CompleteDonation = lazy(() => import('../pages/donation/Complete'));
 const CancelDonation = lazy(() => import('../pages/donation/Cancel'));
 
-const Loader = ({ children }) => <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>;
+const Loader = ({ children }) => (
+  <Suspense
+    fallback={
+      <PageWrapper>
+        <Description>Loading...</Description>
+      </PageWrapper>
+    }
+  >
+    {children}
+  </Suspense>
+);
 
 const Routing = () => (
   <Routes>
