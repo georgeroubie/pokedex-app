@@ -5,7 +5,7 @@ import Home from '../pages/home';
 // Lazy load components
 const Settings = lazy(() => import('../pages/settings'));
 const NotFound = lazy(() => import('../pages/not-found'));
-const MiniGame = lazy(() => import('../pages/mini-game'));
+const MiniGames = lazy(() => import('../pages/mini-games'));
 const CompleteDonation = lazy(() => import('../pages/donation/Complete'));
 const CancelDonation = lazy(() => import('../pages/donation/Cancel'));
 
@@ -15,10 +15,10 @@ const Routing = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route
-      path="/mini-game"
+      path="/mini-games"
       element={
         <Loader>
-          <MiniGame />
+          <MiniGames />
         </Loader>
       }
     />

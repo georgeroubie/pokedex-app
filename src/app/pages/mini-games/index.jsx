@@ -9,11 +9,11 @@ const TopWrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
-const MiniGame = () => (
+const MiniGames = () => (
   <PageWrapper>
     <PokedexTop>
       <TopWrapper>
-        <Subtitle>Mini Game</Subtitle>
+        <Subtitle>Mini Games</Subtitle>
       </TopWrapper>
     </PokedexTop>
     <PokedexBottom>
@@ -22,4 +22,4 @@ const MiniGame = () => (
   </PageWrapper>
 );
 
-export default MiniGame;
+export default MiniGames;
