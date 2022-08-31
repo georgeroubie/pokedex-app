@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { getEvolutionData } from '../../helpers/data';
 import { AppContext } from '../../state/Context';
-import { getPokemon, getPokemonSpecies } from './../../helpers/requests';
+import { getEvolutionChain, getPokemon, getPokemonSpecies } from './../../helpers/requests';
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,12 +33,16 @@ const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
     setLoading(true);
     getPokemon(url).then(({ data: pokemon }) => {
       getPokemonSpecies(pokemon.id).then(({ data: species }) => {
-        setPokemon({
-          ...pokemon,
-          ...species,
+        getEvolutionChain(species.evolution_chain.url).then(({ data: chainData }) => {
+          console.log(getEvolutionData(chainData.chain));
+          setPokemon({
+            ...pokemon,
+            ...species,
+            chain: chainData.chain,
+          });
+          setPokemonName('');
+          setLoading(false);
         });
-        setPokemonName('');
-        setLoading(false);
       });
     });
   };
