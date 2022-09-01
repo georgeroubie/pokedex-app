@@ -24,6 +24,8 @@ const PokemonEvolutions = () => {
     [pokemon.evolutions, pokemon.name],
   );
 
+  const evolvesFrom = useMemo(() => pokemon.evolves_from_species?.name, [pokemon.evolves_from_species?.name]);
+
   if (!pokemon) return null;
 
   if (!pokemon.evolutions.length) {
@@ -37,12 +39,18 @@ const PokemonEvolutions = () => {
 
   console.log('Evolves to', evolvesTo);
 
-  console.log('Evolves from', pokemon.evolves_from_species?.name);
-
   return (
     <Wrapper>
       <Subtitle>Evolutions</Subtitle>
-      <Description>Some evolutions</Description>
+      {evolvesFrom && <Description>Evolves from: {evolvesFrom}</Description>}
+      {Boolean(evolvesTo?.length) && (
+        <Description>
+          Evolves to:{' '}
+          {evolvesTo.map((evolution) => (
+            <span key={evolution.name}>{evolution.name}</span>
+          ))}
+        </Description>
+      )}
     </Wrapper>
   );
 };

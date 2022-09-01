@@ -19,7 +19,6 @@ const Input = styled.input`
 const Search = () => {
   const {
     state: { loading },
-    setPokemon,
   } = useContext(AppContext);
   const [pokemonName, setPokemonName] = useState('');
 
@@ -30,7 +29,7 @@ const Search = () => {
   return (
     <Wrapper>
       <Input type="text" placeholder="Pokemon name" value={pokemonName} onChange={handleChange} disabled={loading} />
-      <Autocomplete searchTerm={pokemonName} setPokemon={setPokemon} setPokemonName={setPokemonName} />
+      <Autocomplete searchTerm={pokemonName} setPokemonName={setPokemonName} />
     </Wrapper>
   );
 };

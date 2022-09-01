@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getEvolutions } from '../../helpers/data';
+import useLoadPokemon from '../../hooks/useLoadPokemon';
 import { AppContext } from '../../state/Context';
-import { getEvolutionChain, getPokemon, getPokemonSpecies } from './../../helpers/requests';
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,28 +21,15 @@ const Name = styled.button`
   width: max-content;
 `;
 
-const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
+const Autocomplete = ({ setPokemonName, searchTerm }) => {
   const {
     state: { loading, pokemonNames },
-    setLoading,
   } = useContext(AppContext);
   const [filteredPokemonNames, setFilteredPokemonNames] = useState([]);
+  const loadPokemon = useLoadPokemon();
 
-  const loadPokemon = (url) => {
-    setLoading(true);
-    getPokemon(url).then(({ data: pokemon }) => {
-      getPokemonSpecies(pokemon.species.url).then(({ data: species }) => {
-        getEvolutionChain(species.evolution_chain.url).then(({ data: { chain } }) => {
-          setPokemon({
-            ...pokemon,
-            ...species,
-            evolutions: getEvolutions(chain),
-          });
-          setPokemonName('');
-          setLoading(false);
-        });
-      });
-    });
+  const handlePokemonNameClick = (url) => {
+    loadPokemon(url, () => setPokemonName(''));
   };
 
   useEffect(() => {
@@ -59,7 +45,7 @@ const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
   return (
     <Wrapper>
       {filteredPokemonNames.map(({ name, url }) => (
-        <Name type="button" onClick={() => loadPokemon(url)} key={url} disabled={loading}>
+        <Name type="button" onClick={() => handlePokemonNameClick(url)} key={url} disabled={loading}>
           {name}
         </Name>
       ))}
@@ -69,7 +55,6 @@ const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
 
 Autocomplete.propTypes = {
   searchTerm: PropTypes.string,
-  setPokemon: PropTypes.func.isRequired,
   setPokemonName: PropTypes.func.isRequired,
 };
 
