@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { AppContext } from './../../state/Context';
 import Autocomplete from './Autocomplete';
 
+const Wrapper = styled.div``;
+
 const Input = styled.input`
   width: 100%;
   border: 0;
@@ -26,10 +28,10 @@ const Search = () => {
   };
 
   return (
-    <div className="search">
+    <Wrapper>
       <Input type="text" placeholder="Pokemon name" value={pokemonName} onChange={handleChange} disabled={loading} />
       <Autocomplete searchTerm={pokemonName} setPokemon={setPokemon} setPokemonName={setPokemonName} />
-    </div>
+    </Wrapper>
   );
 };
 
