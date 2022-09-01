@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { AppContext } from '../../state/Context';
-import Description from '../typography/Description';
+import Subtitle from '../typography/Subtitle';
 import Title from '../typography/Title';
 import PokemonDamage from './PokemonDamage';
+import PokemonEvolutions from './PokemonEvolutions';
 import PokemonTypes from './PokemonTypes';
 
 const ImagesWrapper = styled.div`
@@ -35,7 +36,8 @@ const Pokemon = () => {
           <Image src={sprites.back_default} alt={`${pokemon.name} back image`} />
         </ImagesWrapper>
       )}
-      <Description>Types:</Description>
+      <PokemonEvolutions />
+      <Subtitle>Types</Subtitle>
       <PokemonTypes types={types} />
       <PokemonDamage pokemon={pokemon} />
     </>
