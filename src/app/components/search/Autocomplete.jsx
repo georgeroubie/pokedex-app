@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getEvolutionData } from '../../helpers/data';
+import { getEvolutions } from '../../helpers/data';
 import { AppContext } from '../../state/Context';
 import { getEvolutionChain, getPokemon, getPokemonSpecies } from './../../helpers/requests';
 
@@ -32,13 +32,12 @@ const Autocomplete = ({ setPokemon, setPokemonName, searchTerm }) => {
   const loadPokemon = (url) => {
     setLoading(true);
     getPokemon(url).then(({ data: pokemon }) => {
-      getPokemonSpecies(pokemon.id).then(({ data: species }) => {
-        getEvolutionChain(species.evolution_chain.url).then(({ data: chainData }) => {
-          console.log(getEvolutionData(chainData.chain));
+      getPokemonSpecies(pokemon.species.url).then(({ data: species }) => {
+        getEvolutionChain(species.evolution_chain.url).then(({ data: { chain } }) => {
           setPokemon({
             ...pokemon,
             ...species,
-            chain: chainData.chain,
+            evolutions: getEvolutions(chain),
           });
           setPokemonName('');
           setLoading(false);

@@ -21,7 +21,9 @@ const cacheGet = (url) =>
             localStorage.setItem(url, JSON.stringify(data));
             resolve({ data });
           })
-          .catch((ex) => handleError(ex, reject));
+          .catch((ex) => {
+            handleError(ex, reject);
+          });
       }
     } catch (ex) {
       handleError(ex, reject);
@@ -30,7 +32,7 @@ const cacheGet = (url) =>
 
 const getAllPokemonNames = () => cacheGet(`${API_URL}pokemon?limit=100000&offset=0`);
 
-const getPokemonSpecies = (id) => cacheGet(`${API_URL}pokemon-species/${id}`);
+const getPokemonSpecies = (url) => cacheGet(url);
 
 const getPokemon = (url) => cacheGet(url);
 

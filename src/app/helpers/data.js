@@ -1,35 +1,29 @@
-function getEvolutionData(chain) {
-  const evoChain = [];
-  let evoData = chain;
-
-  do {
-    const numberOfEvolutions = evoData['evolves_to'].length;
-
-    evoChain.push({
-      species_name: evoData.species.name,
-      min_level: !evoData ? 1 : evoData.min_level,
-      trigger_name: !evoData ? null : evoData?.trigger?.name,
-      item: !evoData ? null : evoData.item,
+function evolvesTo(evolves, chain) {
+  if (chain.evolves_to?.length > 0) {
+    evolves.push({
+      pokemon: {
+        name: chain.species.name,
+        speciesUrl: chain.species.url,
+      },
+      evolvesTo: chain.evolves_to.map((e) => ({
+        name: e.species.name,
+        speciesUrl: e.species.url,
+        minLevel: e.evolution_details[0]?.min_level,
+        triggerName: e.evolution_details[0]?.trigger.name,
+        triggerUrl: e.evolution_details[0]?.trigger.url,
+        itemName: e.evolution_details[0]?.item?.name,
+        itemUrl: e.evolution_details[0]?.item?.url,
+      })),
     });
 
-    console.log(numberOfEvolutions);
+    chain.evolves_to.map((evolution) => evolvesTo(evolves, evolution));
+  }
 
-    if (numberOfEvolutions > 1) {
-      for (let i = 1; i < numberOfEvolutions; i++) {
-        console.log(evoData.evolves_to[i]);
-        evoChain.push({
-          species_name: evoData.evolves_to[i].species.name,
-          min_level: !evoData.evolves_to[i] ? 1 : evoData.evolves_to[i].min_level,
-          trigger_name: !evoData.evolves_to[i] ? null : evoData.evolves_to[i].trigger.name,
-          item: !evoData.evolves_to[i] ? null : evoData.evolves_to[i].item,
-        });
-      }
-    }
-
-    evoData = evoData['evolves_to'][0];
-  } while (!!evoData && evoData.hasOwnProperty('evolves_to'));
-
-  return evoChain;
+  return evolves;
 }
 
-export { getEvolutionData };
+function getEvolutions(chain) {
+  return evolvesTo([], chain);
+}
+
+export { getEvolutions };
