@@ -1,18 +1,24 @@
 import { useContext, useMemo } from 'react';
 import styled from 'styled-components';
+import useLoadPokemon from '../../hooks/useLoadPokemon';
 import { AppContext } from '../../state/Context';
 import Description from '../typography/Description';
 import Subtitle from '../typography/Subtitle';
 
 const Wrapper = styled.div``;
 
+const Button = styled.button``;
+
 const PokemonEvolutions = () => {
   const { state } = useContext(AppContext);
   const { pokemon, pokemonNames } = state;
+  const loadPokemon = useLoadPokemon();
 
-  console.log(pokemonNames);
+  function handlePokemonNameClick(name) {
+    const evolutionPokemon = pokemonNames.find((p) => p.name === name);
+    loadPokemon(evolutionPokemon.url);
+  }
 
-  // eslint-disable-next-line no-unused-vars
   const evolvesTo = useMemo(
     () =>
       pokemon.evolutions.reduce((acc, evolution) => {
@@ -42,12 +48,18 @@ const PokemonEvolutions = () => {
   return (
     <Wrapper>
       <Subtitle>Evolutions</Subtitle>
-      {evolvesFrom && <Description>Evolves from: {evolvesFrom}</Description>}
+      {evolvesFrom && (
+        <Description>
+          Evolves from: <Button onClick={() => handlePokemonNameClick(evolvesFrom)}>{evolvesFrom}</Button>
+        </Description>
+      )}
       {Boolean(evolvesTo?.length) && (
         <Description>
           Evolves to:{' '}
           {evolvesTo.map((evolution) => (
-            <span key={evolution.name}>{evolution.name}</span>
+            <Button key={evolution.name} onClick={() => handlePokemonNameClick(evolution.name)}>
+              {evolution.name}
+            </Button>
           ))}
         </Description>
       )}
