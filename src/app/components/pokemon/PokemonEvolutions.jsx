@@ -1,36 +1,46 @@
-import { useContext, useMemo } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 import styled from 'styled-components';
-import useLoadPokemon from '../../hooks/useLoadPokemon';
 import { AppContext } from '../../state/Context';
 import Description from '../typography/Description';
 import Subtitle from '../typography/Subtitle';
+import _PokemonName from './PokemonName';
 
 const Wrapper = styled.div``;
 
-const Button = styled.button``;
+const PokemonName = styled(_PokemonName)`
+  margin-left: ${({ theme: { spacing } }) => spacing.small};
+`;
 
 const PokemonEvolutions = () => {
   const { state } = useContext(AppContext);
   const { pokemon, pokemonNames } = state;
-  const loadPokemon = useLoadPokemon();
 
-  function handlePokemonNameClick(name) {
-    const evolutionPokemon = pokemonNames.find((p) => p.name === name);
-    loadPokemon(evolutionPokemon.url);
-  }
+  const getPokemonUrl = useCallback((name) => pokemonNames.find((p) => p.name === name).url, [pokemonNames]);
 
   const evolvesTo = useMemo(
     () =>
       pokemon.evolutions.reduce((acc, evolution) => {
         if (evolution.pokemon.name === pokemon.name) {
-          return [...acc, ...evolution.evolvesTo];
+          const allEvolutions = evolution.evolvesTo.map((e) => ({
+            ...e,
+            url: getPokemonUrl(e.name),
+          }));
+          return [...acc, ...allEvolutions];
         }
         return acc;
       }, []),
-    [pokemon.evolutions, pokemon.name],
+    [pokemon.evolutions, pokemon.name, getPokemonUrl],
   );
 
-  const evolvesFrom = useMemo(() => pokemon.evolves_from_species?.name, [pokemon.evolves_from_species?.name]);
+  const evolvesFrom = useMemo(() => {
+    const name = pokemon.evolves_from_species?.name;
+    if (name) {
+      return {
+        name,
+        url: getPokemonUrl(name),
+      };
+    }
+  }, [getPokemonUrl, pokemon.evolves_from_species?.name]);
 
   if (!pokemon) return null;
 
@@ -43,23 +53,22 @@ const PokemonEvolutions = () => {
     );
   }
 
-  console.log('Evolves to', evolvesTo);
-
   return (
     <Wrapper>
       <Subtitle>Evolutions</Subtitle>
       {evolvesFrom && (
         <Description>
-          Evolves from: <Button onClick={() => handlePokemonNameClick(evolvesFrom)}>{evolvesFrom}</Button>
+          Evolves from:
+          <PokemonName url={evolvesFrom.url}>{evolvesFrom.name}</PokemonName>
         </Description>
       )}
       {Boolean(evolvesTo?.length) && (
         <Description>
-          Evolves to:{' '}
+          Evolves to:
           {evolvesTo.map((evolution) => (
-            <Button key={evolution.name} onClick={() => handlePokemonNameClick(evolution.name)}>
+            <PokemonName key={evolution.name} url={evolution.url}>
               {evolution.name}
-            </Button>
+            </PokemonName>
           ))}
         </Description>
       )}
