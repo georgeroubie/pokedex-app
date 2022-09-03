@@ -4,6 +4,13 @@ import styled from 'styled-components';
 import useLoadPokemon from '../../hooks/useLoadPokemon';
 import { AppContext } from '../../state/Context';
 
+const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+  gap: ${({ theme: { spacing } }) => spacing.xsmall};
+`;
+
 const Button = styled.button`
   border-radius: 0;
   border: 0;
@@ -15,27 +22,35 @@ const Button = styled.button`
   line-height: ${({ theme: { lineHeight } }) => lineHeight.normal};
 `;
 
-const PokemonName = ({ className, url, children, onClick }) => {
+const PokemonName = ({ className, pokemons, onClick }) => {
   const {
     state: { loading },
   } = useContext(AppContext);
   const loadPokemon = useLoadPokemon();
 
-  function handleClick() {
+  function handleClick(url) {
     loadPokemon(url, onClick?.());
   }
 
   return (
-    <Button className={className} type="button" onClick={handleClick} disabled={loading}>
-      {children}
-    </Button>
+    <Wrapper className={className}>
+      {pokemons.map(({ name, url }) => (
+        <Button key={url} type="button" disabled={loading} onClick={() => handleClick(url)}>
+          {name}
+        </Button>
+      ))}
+    </Wrapper>
   );
 };
 
 PokemonName.propTypes = {
   className: PropTypes.string,
-  url: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  pokemons: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   onClick: PropTypes.func,
 };
 

@@ -2,13 +2,9 @@ import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { AppContext } from '../../state/Context';
-import PokemonName from '../pokemon/PokemonName';
+import _PokemonName from '../pokemon/PokemonName';
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: ${({ theme: { spacing } }) => spacing.xsmall};
+const PokemonName = styled(_PokemonName)`
   padding: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
@@ -28,15 +24,7 @@ const Autocomplete = ({ setPokemonName, searchTerm }) => {
     }
   }, [searchTerm, pokemonNames]);
 
-  return (
-    <Wrapper>
-      {filteredPokemonNames.map(({ name, url }) => (
-        <PokemonName key={url} url={url} onClick={() => setPokemonName('')}>
-          {name}
-        </PokemonName>
-      ))}
-    </Wrapper>
-  );
+  return <PokemonName pokemons={filteredPokemonNames} onClick={() => setPokemonName('')} />;
 };
 
 Autocomplete.propTypes = {

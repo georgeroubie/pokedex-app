@@ -8,7 +8,7 @@ import _PokemonName from './PokemonName';
 const Wrapper = styled.div``;
 
 const PokemonName = styled(_PokemonName)`
-  margin-left: ${({ theme: { spacing } }) => spacing.small};
+  padding-top: ${({ theme: { spacing } }) => spacing.small};
 `;
 
 const PokemonEvolutions = () => {
@@ -59,17 +59,13 @@ const PokemonEvolutions = () => {
       {evolvesFrom && (
         <Description>
           Evolves from:
-          <PokemonName url={evolvesFrom.url}>{evolvesFrom.name}</PokemonName>
+          <PokemonName pokemons={[evolvesFrom]} />
         </Description>
       )}
       {Boolean(evolvesTo?.length) && (
         <Description>
           Evolves to:
-          {evolvesTo.map((evolution) => (
-            <PokemonName key={evolution.name} url={evolution.url}>
-              {evolution.name}
-            </PokemonName>
-          ))}
+          <PokemonName pokemons={evolvesTo} />
         </Description>
       )}
     </Wrapper>
