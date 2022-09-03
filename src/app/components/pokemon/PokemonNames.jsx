@@ -22,7 +22,7 @@ const Button = styled.button`
   line-height: ${({ theme: { lineHeight } }) => lineHeight.normal};
 `;
 
-const PokemonName = ({ className, pokemons, onClick }) => {
+const PokemonNames = ({ className, pokemons, onClick }) => {
   const {
     state: { loading },
   } = useContext(AppContext);
@@ -43,7 +43,7 @@ const PokemonName = ({ className, pokemons, onClick }) => {
   );
 };
 
-PokemonName.propTypes = {
+PokemonNames.propTypes = {
   className: PropTypes.string,
   pokemons: PropTypes.arrayOf(
     PropTypes.shape({
@@ -54,9 +54,9 @@ PokemonName.propTypes = {
   onClick: PropTypes.func,
 };
 
-PokemonName.defaultProps = {
+PokemonNames.defaultProps = {
   className: null,
   onClick: () => {},
 };
 
-export default PokemonName;
+export default PokemonNames;

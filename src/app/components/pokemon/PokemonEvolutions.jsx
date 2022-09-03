@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { AppContext } from '../../state/Context';
 import Description from '../typography/Description';
 import Subtitle from '../typography/Subtitle';
-import _PokemonName from './PokemonName';
+import _PokemonNames from './PokemonNames';
 
 const Wrapper = styled.div``;
 
-const PokemonName = styled(_PokemonName)`
+const PokemonNames = styled(_PokemonNames)`
   padding-top: ${({ theme: { spacing } }) => spacing.small};
 `;
 
@@ -59,13 +59,13 @@ const PokemonEvolutions = () => {
       {evolvesFrom && (
         <Description>
           Evolves from:
-          <PokemonName pokemons={[evolvesFrom]} />
+          <PokemonNames pokemons={[evolvesFrom]} />
         </Description>
       )}
       {Boolean(evolvesTo?.length) && (
         <Description>
           Evolves to:
-          <PokemonName pokemons={evolvesTo} />
+          <PokemonNames pokemons={evolvesTo} />
         </Description>
       )}
     </Wrapper>

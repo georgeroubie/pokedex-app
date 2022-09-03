@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { AppContext } from '../../state/Context';
-import _PokemonName from '../pokemon/PokemonName';
+import _PokemonNames from '../pokemon/PokemonNames';
 
-const PokemonName = styled(_PokemonName)`
+const PokemonNames = styled(_PokemonNames)`
   padding: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
@@ -24,7 +24,7 @@ const Autocomplete = ({ setPokemonName, searchTerm }) => {
     }
   }, [searchTerm, pokemonNames]);
 
-  return <PokemonName pokemons={filteredPokemonNames} onClick={() => setPokemonName('')} />;
+  return <PokemonNames pokemons={filteredPokemonNames} onClick={() => setPokemonName('')} />;
 };
 
 Autocomplete.propTypes = {
