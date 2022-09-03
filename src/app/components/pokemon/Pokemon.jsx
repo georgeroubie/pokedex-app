@@ -30,10 +30,10 @@ const Pokemon = () => {
   return (
     <>
       <Title>{pokemon.name}</Title>
-      {sprites.front_default && sprites.back_default && (
+      {(sprites.front_default || sprites.back_default) && (
         <ImagesWrapper>
-          <Image src={sprites.front_default} alt={`${pokemon.name} front image`} />
-          <Image src={sprites.back_default} alt={`${pokemon.name} back image`} />
+          {sprites.front_default && <Image src={sprites.front_default} alt={`${pokemon.name} front image`} />}
+          {sprites.back_default && <Image src={sprites.back_default} alt={`${pokemon.name} back image`} />}
         </ImagesWrapper>
       )}
       <PokemonEvolutions />
