@@ -1,6 +1,7 @@
 {
   "short_name": "Pokedex",
   "name": "Pokedex",
+  "description": "A Pokedex app that will help you in your pokemon journey",
   "icons": [
     {
       "src": "favicon.ico",
@@ -22,5 +23,5 @@
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#ee1515",
-  "background_color": "#222224"
+  "background_color": "#ee1515"
 }
