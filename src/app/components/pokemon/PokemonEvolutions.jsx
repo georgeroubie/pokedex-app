@@ -8,7 +8,7 @@ import _PokemonNames from './PokemonNames';
 const Wrapper = styled.div``;
 
 const PokemonNames = styled(_PokemonNames)`
-  padding-top: ${({ theme: { spacing } }) => spacing.small};
+  margin-bottom: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
 const PokemonEvolutions = () => {
@@ -48,7 +48,7 @@ const PokemonEvolutions = () => {
     return (
       <Wrapper>
         <Subtitle>Evolutions</Subtitle>
-        <Description>No known evolution</Description>
+        <Description>No known evolutions</Description>
       </Wrapper>
     );
   }
@@ -57,16 +57,16 @@ const PokemonEvolutions = () => {
     <Wrapper>
       <Subtitle>Evolutions</Subtitle>
       {evolvesFrom && (
-        <Description>
-          Evolves from:
+        <>
+          <Description>Evolves from:</Description>
           <PokemonNames pokemons={[evolvesFrom]} />
-        </Description>
+        </>
       )}
       {Boolean(evolvesTo?.length) && (
-        <Description>
-          Evolves to:
+        <>
+          <Description>Evolves to:</Description>
           <PokemonNames pokemons={evolvesTo} />
-        </Description>
+        </>
       )}
     </Wrapper>
   );
