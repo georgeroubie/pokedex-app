@@ -1,6 +1,5 @@
 import { useContext } from 'react';
-import { getEvolutions } from '../helpers/data';
-import { getEvolutionChain, getPokemon, getPokemonSpecies } from '../helpers/requests';
+import { getEvolutionChainData, getPokemonData, getPokemonSpeciesData } from '../helpers/requests';
 import { AppContext } from '../state/Context';
 
 function useLoadPokemon() {
@@ -9,32 +8,14 @@ function useLoadPokemon() {
   async function loadPokemon(url, callback) {
     setLoading(true);
 
-    const { data: pokemon } = await getPokemon(url);
-    const pokemonData = {
-      id: pokemon.id,
-      name: pokemon.name,
-      species: pokemon.species,
-      types: pokemon.types,
-      sprites: pokemon.sprites,
-    };
-
-    const { data: species } = await getPokemonSpecies(pokemonData.species.url);
-    const speciesData = {
-      evolutionChainUrl: species.evolution_chain.url,
-      evolvesFromSpecies: species.evolves_from_species?.name,
-    };
-
-    const {
-      data: { chain },
-    } = await getEvolutionChain(speciesData.evolutionChainUrl);
-    const chainData = {
-      evolutions: getEvolutions(chain),
-    };
+    const pokemon = await getPokemonData(url);
+    const speciesData = await getPokemonSpeciesData(pokemon.species.url);
+    const evolutionChainData = await getEvolutionChainData(speciesData.evolutionChainUrl);
 
     setPokemon({
-      ...pokemonData,
+      ...pokemon,
       ...speciesData,
-      ...chainData,
+      ...evolutionChainData,
     });
     setLoading(false);
     callback?.();

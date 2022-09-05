@@ -22,8 +22,34 @@ function evolvesTo(evolves, chain) {
   return evolves;
 }
 
-function getEvolutions(chain) {
-  return evolvesTo([], chain);
+function transformPokemonRecordsData(data) {
+  return data.results;
 }
 
-export { getEvolutions };
+function transformPokemonData(data) {
+  return {
+    id: data.id,
+    name: data.name,
+    species: data.species,
+    types: data.types,
+    sprites: {
+      front_default: data.sprites?.front_default,
+      back_default: data.sprites?.back_default,
+    },
+  };
+}
+
+function transformPokemonSpeciesData(data) {
+  return {
+    evolutionChainUrl: data.evolution_chain.url,
+    evolvesFromSpecies: data.evolves_from_species?.name,
+  };
+}
+
+function transformPokemonChainData(data) {
+  return {
+    evolutions: evolvesTo([], data.chain),
+  };
+}
+
+export { transformPokemonRecordsData, transformPokemonChainData, transformPokemonData, transformPokemonSpeciesData };

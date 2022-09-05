@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from 'react';
-import { getAllPokemonNames } from '../helpers/requests';
+import { getAllPokemonRecordsData } from '../helpers/requests';
 import { getCurrentTheme, saveThemeSelection } from '../theme/themes/helpers';
 import * as actionTypes from './actions';
 import { appReducer } from './reducer';
@@ -34,8 +34,8 @@ const useAppState = () => {
   };
 
   useEffect(() => {
-    getAllPokemonNames().then(({ data: { results } }) => {
-      setPokemonNames(results);
+    getAllPokemonRecordsData().then((data) => {
+      setPokemonNames(data);
       setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

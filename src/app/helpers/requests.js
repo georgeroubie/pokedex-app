@@ -1,4 +1,10 @@
 import axios from 'axios';
+import {
+  transformPokemonChainData,
+  transformPokemonData,
+  transformPokemonRecordsData,
+  transformPokemonSpeciesData,
+} from './data';
 
 const API_URL = 'https://pokeapi.co/api/v2/';
 
@@ -30,14 +36,46 @@ const cacheGet = (url) =>
     }
   });
 
-const getAllPokemonNames = () => cacheGet(`${API_URL}pokemon?limit=100000&offset=0`);
+function get(url, callback) {
+  return new Promise((resolve, reject) => {
+    try {
+      if (localStorage.getItem(url)) {
+        const cachedData = JSON.parse(localStorage.getItem(url));
+        resolve(cachedData);
+      } else {
+        axios
+          .get(url)
+          .then(({ data }) => {
+            const transformedData = callback(data);
+            localStorage.setItem(url, JSON.stringify(transformedData));
+            resolve(transformedData);
+          })
+          .catch((ex) => {
+            handleError(ex, reject);
+          });
+      }
+    } catch (ex) {
+      handleError(ex, reject);
+    }
+  });
+}
 
-const getPokemonSpecies = (url) => cacheGet(url);
+function getAllPokemonRecordsData() {
+  return get(`${API_URL}pokemon?limit=100000&offset=0`, transformPokemonRecordsData);
+}
 
-const getPokemon = (url) => cacheGet(url);
+function getPokemonData(url) {
+  return get(url, transformPokemonData);
+}
 
-const getEvolutionChain = (url) => cacheGet(url);
+function getPokemonSpeciesData(url) {
+  return get(url, transformPokemonSpeciesData);
+}
+
+function getEvolutionChainData(url) {
+  return get(url, transformPokemonChainData);
+}
 
 const getPokemonTypes = (urls) => axios.all(urls.map((url) => cacheGet(url)));
 
-export { getAllPokemonNames, getPokemon, getPokemonTypes, getPokemonSpecies, getEvolutionChain };
+export { getAllPokemonRecordsData, getPokemonData, getPokemonTypes, getPokemonSpeciesData, getEvolutionChainData };
