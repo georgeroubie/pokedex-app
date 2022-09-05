@@ -10,15 +10,31 @@ function useLoadPokemon() {
     setLoading(true);
 
     const { data: pokemon } = await getPokemon(url);
-    const { data: species } = await getPokemonSpecies(pokemon.species.url);
+    const pokemonData = {
+      id: pokemon.id,
+      name: pokemon.name,
+      species: pokemon.species,
+      types: pokemon.types,
+      sprites: pokemon.sprites,
+    };
+
+    const { data: species } = await getPokemonSpecies(pokemonData.species.url);
+    const speciesData = {
+      evolutionChainUrl: species.evolution_chain.url,
+      evolvesFromSpecies: species.evolves_from_species?.name,
+    };
+
     const {
       data: { chain },
-    } = await getEvolutionChain(species.evolution_chain.url);
+    } = await getEvolutionChain(speciesData.evolutionChainUrl);
+    const chainData = {
+      evolutions: getEvolutions(chain),
+    };
 
     setPokemon({
-      ...pokemon,
-      ...species,
-      evolutions: getEvolutions(chain),
+      ...pokemonData,
+      ...speciesData,
+      ...chainData,
     });
     setLoading(false);
     callback?.();

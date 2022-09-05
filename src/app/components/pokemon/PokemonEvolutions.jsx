@@ -33,14 +33,14 @@ const PokemonEvolutions = () => {
   );
 
   const evolvesFrom = useMemo(() => {
-    const name = pokemon.evolves_from_species?.name;
+    const name = pokemon.evolvesFromSpecies;
     if (name) {
       return {
         name,
         url: getPokemonUrl(name),
       };
     }
-  }, [getPokemonUrl, pokemon.evolves_from_species?.name]);
+  }, [getPokemonUrl, pokemon.evolvesFromSpecies]);
 
   if (!pokemon) return null;
 
