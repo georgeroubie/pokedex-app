@@ -52,4 +52,16 @@ function transformPokemonChainData(data) {
   };
 }
 
-export { transformPokemonRecordsData, transformPokemonChainData, transformPokemonData, transformPokemonSpeciesData };
+function transformPokemonTypesData(data) {
+  return {
+    damage_relations: data.damage_relations,
+  };
+}
+
+export {
+  transformPokemonRecordsData,
+  transformPokemonChainData,
+  transformPokemonData,
+  transformPokemonSpeciesData,
+  transformPokemonTypesData,
+};

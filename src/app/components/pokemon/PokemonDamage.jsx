@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { getPokemonTypes } from '../../helpers/requests';
+import { getPokemonTypesData } from '../../helpers/requests';
 import Description from '../typography/Description';
 import Subtitle from '../typography/Subtitle';
 import PokemonTypes from './PokemonTypes';
@@ -59,7 +59,7 @@ const PokemonDamage = ({ pokemon }) => {
 
   useEffect(() => {
     const apiUrls = types.map(({ type }) => type.url);
-    getPokemonTypes(apiUrls).then(axios.spread((...responses) => calculateDamages(responses)));
+    getPokemonTypesData(apiUrls).then(axios.spread((...responses) => calculateDamages(responses)));
   }, [types, calculateDamages]);
 
   return (
