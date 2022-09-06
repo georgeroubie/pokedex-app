@@ -41,7 +41,7 @@ function transformPokemonData(data) {
 
 function transformPokemonSpeciesData(data) {
   return {
-    evolutionChainUrl: data.evolution_chain.url,
+    evolutionChainUrl: data.evolution_chain?.url,
     evolvesFromSpecies: data.evolves_from_species?.name,
   };
 }

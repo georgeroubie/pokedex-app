@@ -15,11 +15,11 @@ const PokemonEvolutions = () => {
   const { state } = useContext(AppContext);
   const { pokemon, pokemonNames } = state;
 
-  const getPokemonUrl = useCallback((name) => pokemonNames.find((p) => p.name === name).url, [pokemonNames]);
+  const getPokemonUrl = useCallback((name) => pokemonNames.find((p) => p.name === name)?.url, [pokemonNames]);
 
   const evolvesTo = useMemo(
     () =>
-      pokemon.evolutions.reduce((acc, evolution) => {
+      pokemon?.evolutions?.reduce((acc, evolution) => {
         if (evolution.pokemon.name === pokemon.name) {
           const allEvolutions = evolution.evolvesTo.map((e) => ({
             ...e,
@@ -44,7 +44,7 @@ const PokemonEvolutions = () => {
 
   if (!pokemon) return null;
 
-  if (!pokemon.evolutions.length) {
+  if (!pokemon.evolutions || !pokemon.evolutions.length) {
     return (
       <Wrapper>
         <Subtitle>Evolutions</Subtitle>

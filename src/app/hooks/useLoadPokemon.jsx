@@ -10,7 +10,10 @@ function useLoadPokemon() {
 
     const pokemon = await getPokemonData(url);
     const speciesData = await getPokemonSpeciesData(pokemon.species.url);
-    const evolutionChainData = await getEvolutionChainData(speciesData.evolutionChainUrl);
+    let evolutionChainData = {};
+    if (speciesData.evolutionChainUrl) {
+      evolutionChainData = await getEvolutionChainData(speciesData.evolutionChainUrl);
+    }
 
     setPokemon({
       ...pokemon,
