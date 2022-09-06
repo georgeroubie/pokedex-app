@@ -39,7 +39,7 @@ const PokemonDamage = ({ pokemon }) => {
 
   const calculateDamages = useCallback((responses) => {
     if (responses.length === 1) {
-      const typeData = responses[0].data.damage_relations;
+      const typeData = responses[0].damage_relations;
       setNoDamageTo(typeData.no_damage_to);
       setHalfDamageTo(typeData.half_damage_to);
       setDoubleDamageTo(typeData.double_damage_to);
@@ -49,8 +49,8 @@ const PokemonDamage = ({ pokemon }) => {
       setDoubleDamageFrom(typeData.double_damage_from);
     } else {
       const typesData = {
-        first: responses[0].data.damage_relations,
-        second: responses[1].data.damage_relations,
+        first: responses[0].damage_relations,
+        second: responses[1].damage_relations,
       };
       calculateDamageTo(typesData);
     }
