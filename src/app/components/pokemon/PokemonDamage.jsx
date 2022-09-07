@@ -5,6 +5,15 @@ import Description from '../typography/Description';
 import Subtitle from '../typography/Subtitle';
 import PokemonTypes from './PokemonTypes';
 
+const damageTypes = [
+  'no_damage_to',
+  'half_damage_to',
+  'double_damage_to',
+  'no_damage_from',
+  'half_damage_from',
+  'double_damage_from',
+];
+
 const PokemonDamage = ({ pokemon }) => {
   const { types } = pokemon;
   const [damageData, setDamageData] = useState({
@@ -18,42 +27,40 @@ const PokemonDamage = ({ pokemon }) => {
     doubleDamageFrom: null,
   });
 
-  const combineTypeData = (typesData, damageType) => {
-    const data = typesData.first[damageType];
-    data.push(
-      ...typesData.second[damageType].filter(({ name }) => {
-        const alreadyExists = data.filter((type) => type.name === name);
-        return alreadyExists.length === 0;
-      }),
-    );
-    return [...data];
-  };
+  function combineTypesData(typesData) {
+    return damageTypes.reduce((acc, damageType) => {
+      const data = typesData.first[damageType];
+      data.push(
+        ...typesData.second[damageType].filter(({ name }) => {
+          const alreadyExists = data.filter((type) => type.name === name);
+          return alreadyExists.length === 0;
+        }),
+      );
+      return {
+        ...acc,
+        [damageType]: [...data],
+      };
+    }, {});
+  }
 
   const calculateDamages = useCallback((responses) => {
+    let typesData;
     if (responses.length === 1) {
-      const typeData = responses[0].damage_relations;
-      setDamageData({
-        noDamageTo: typeData.no_damage_to,
-        halfDamageTo: typeData.half_damage_to,
-        doubleDamageTo: typeData.double_damage_to,
-        noDamageFrom: typeData.no_damage_from,
-        halfDamageFrom: typeData.half_damage_from,
-        doubleDamageFrom: typeData.double_damage_from,
-      });
+      typesData = responses[0].damage_relations;
     } else {
-      const typesData = {
+      typesData = combineTypesData({
         first: responses[0].damage_relations,
         second: responses[1].damage_relations,
-      };
-      setDamageData({
-        noDamageTo: combineTypeData(typesData, 'no_damage_to'),
-        halfDamageTo: combineTypeData(typesData, 'half_damage_to'),
-        doubleDamageTo: combineTypeData(typesData, 'double_damage_to'),
-        noDamageFrom: combineTypeData(typesData, 'no_damage_from'),
-        halfDamageFrom: combineTypeData(typesData, 'half_damage_from'),
-        doubleDamageFrom: combineTypeData(typesData, 'double_damage_from'),
       });
     }
+    setDamageData({
+      noDamageTo: typesData.no_damage_to,
+      halfDamageTo: typesData.half_damage_to,
+      doubleDamageTo: typesData.double_damage_to,
+      noDamageFrom: typesData.no_damage_from,
+      halfDamageFrom: typesData.half_damage_from,
+      doubleDamageFrom: typesData.double_damage_from,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
