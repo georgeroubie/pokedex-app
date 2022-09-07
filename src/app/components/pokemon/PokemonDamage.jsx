@@ -11,7 +11,7 @@ const PokemonDamage = ({ pokemon }) => {
   const [noDamageTo, setNoDamageTo] = useState([]);
   const [halfDamageTo, setHalfDamageTo] = useState([]);
   const [doubleDamageTo, setDoubleDamageTo] = useState([]);
-  // Defence
+  // Defense
   const [noDamageFrom, setNoDamageFrom] = useState([]);
   const [halfDamageFrom, setHalfDamageFrom] = useState([]);
   const [doubleDamageFrom, setDoubleDamageFrom] = useState([]);
@@ -83,7 +83,7 @@ const PokemonDamage = ({ pokemon }) => {
           <PokemonTypes types={doubleDamageTo} />
         </>
       )}
-      <Subtitle>Defence</Subtitle>
+      <Subtitle>Defense</Subtitle>
       {Boolean(noDamageFrom.length) && (
         <>
           <Description>No effect:</Description>
