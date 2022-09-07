@@ -7,14 +7,16 @@ import PokemonTypes from './PokemonTypes';
 
 const PokemonDamage = ({ pokemon }) => {
   const { types } = pokemon;
-  // Attack
-  const [noDamageTo, setNoDamageTo] = useState([]);
-  const [halfDamageTo, setHalfDamageTo] = useState([]);
-  const [doubleDamageTo, setDoubleDamageTo] = useState([]);
-  // Defense
-  const [noDamageFrom, setNoDamageFrom] = useState([]);
-  const [halfDamageFrom, setHalfDamageFrom] = useState([]);
-  const [doubleDamageFrom, setDoubleDamageFrom] = useState([]);
+  const [damageData, setDamageData] = useState({
+    // Attack
+    noDamageTo: null,
+    halfDamageTo: null,
+    doubleDamageTo: null,
+    // Defense
+    noDamageFrom: null,
+    halfDamageFrom: null,
+    doubleDamageFrom: null,
+  });
 
   const combineTypeData = (typesData, damageType) => {
     const data = typesData.first[damageType];
@@ -27,32 +29,30 @@ const PokemonDamage = ({ pokemon }) => {
     return [...data];
   };
 
-  const calculateDamageTo = (typesData) => {
-    setNoDamageTo(combineTypeData(typesData, 'no_damage_to'));
-    setHalfDamageTo(combineTypeData(typesData, 'half_damage_to'));
-    setDoubleDamageTo(combineTypeData(typesData, 'double_damage_to'));
-
-    setNoDamageFrom(combineTypeData(typesData, 'no_damage_from'));
-    setHalfDamageFrom(combineTypeData(typesData, 'half_damage_from'));
-    setDoubleDamageFrom(combineTypeData(typesData, 'double_damage_from'));
-  };
-
   const calculateDamages = useCallback((responses) => {
     if (responses.length === 1) {
       const typeData = responses[0].damage_relations;
-      setNoDamageTo(typeData.no_damage_to);
-      setHalfDamageTo(typeData.half_damage_to);
-      setDoubleDamageTo(typeData.double_damage_to);
-
-      setNoDamageFrom(typeData.no_damage_from);
-      setHalfDamageFrom(typeData.half_damage_from);
-      setDoubleDamageFrom(typeData.double_damage_from);
+      setDamageData({
+        noDamageTo: typeData.no_damage_to,
+        halfDamageTo: typeData.half_damage_to,
+        doubleDamageTo: typeData.double_damage_to,
+        noDamageFrom: typeData.no_damage_from,
+        halfDamageFrom: typeData.half_damage_from,
+        doubleDamageFrom: typeData.double_damage_from,
+      });
     } else {
       const typesData = {
         first: responses[0].damage_relations,
         second: responses[1].damage_relations,
       };
-      calculateDamageTo(typesData);
+      setDamageData({
+        noDamageTo: combineTypeData(typesData, 'no_damage_to'),
+        halfDamageTo: combineTypeData(typesData, 'half_damage_to'),
+        doubleDamageTo: combineTypeData(typesData, 'double_damage_to'),
+        noDamageFrom: combineTypeData(typesData, 'no_damage_from'),
+        halfDamageFrom: combineTypeData(typesData, 'half_damage_from'),
+        doubleDamageFrom: combineTypeData(typesData, 'double_damage_from'),
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -65,41 +65,41 @@ const PokemonDamage = ({ pokemon }) => {
   return (
     <>
       <Subtitle>Attack</Subtitle>
-      {Boolean(noDamageTo.length) && (
+      {damageData.noDamageTo && (
         <>
           <Description>No effect:</Description>
-          <PokemonTypes types={noDamageTo} />
+          <PokemonTypes types={damageData.noDamageTo} />
         </>
       )}
-      {Boolean(halfDamageTo.length) && (
+      {damageData.halfDamageTo && (
         <>
           <Description>Not very effective:</Description>
-          <PokemonTypes types={halfDamageTo} />
+          <PokemonTypes types={damageData.halfDamageTo} />
         </>
       )}
-      {Boolean(doubleDamageTo.length) && (
+      {damageData.doubleDamageTo && (
         <>
           <Description>Super-effective:</Description>
-          <PokemonTypes types={doubleDamageTo} />
+          <PokemonTypes types={damageData.doubleDamageTo} />
         </>
       )}
       <Subtitle>Defense</Subtitle>
-      {Boolean(noDamageFrom.length) && (
+      {damageData.noDamageFrom && (
         <>
           <Description>No effect:</Description>
-          <PokemonTypes types={noDamageFrom} />
+          <PokemonTypes types={damageData.noDamageFrom} />
         </>
       )}
-      {Boolean(halfDamageFrom.length) && (
+      {damageData.halfDamageFrom && (
         <>
           <Description>Not very effective:</Description>
-          <PokemonTypes types={halfDamageFrom} />
+          <PokemonTypes types={damageData.halfDamageFrom} />
         </>
       )}
-      {Boolean(doubleDamageFrom.length) && (
+      {damageData.doubleDamageFrom && (
         <>
           <Description>Super-effective:</Description>
-          <PokemonTypes types={doubleDamageFrom} />
+          <PokemonTypes types={damageData.doubleDamageFrom} />
         </>
       )}
     </>
