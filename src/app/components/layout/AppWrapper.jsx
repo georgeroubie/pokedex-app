@@ -35,7 +35,7 @@ const AppWrapper = ({ children }) => {
   }, [changeHeightValue]);
 
   function getHeight() {
-    return `${document.documentElement.clientHeight || window.innerHeight}px`;
+    return `${window.innerHeight}px`;
   }
 
   return <Wrapper $height={height}>{children}</Wrapper>;
