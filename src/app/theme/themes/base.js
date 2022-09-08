@@ -8,10 +8,7 @@ const baseTheme = {
     xlarge: '2.5rem',
   },
   layout: {
-    topHeight: '35vh',
-    bottomHeight: '65vh',
     containerWidth: '500px',
-    menuHeight: '2.2rem',
   },
   fontSize: {
     xsmall: '0.7rem',
