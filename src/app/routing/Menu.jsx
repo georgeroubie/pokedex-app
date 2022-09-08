@@ -9,10 +9,8 @@ const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
+  grid-area: 1 / 1 / 2 / 2;
   padding: 0 ${({ theme: { spacing } }) => spacing.normal};
-  max-width: ${({ theme: { layout } }) => layout.containerWidth};
-  height: ${({ theme: { layout } }) => layout.menuHeight};
   background-color: ${({ theme: { colors } }) => colors.backgroundSecondary};
 `;
 
