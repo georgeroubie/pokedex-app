@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _Circle from '../shapes/Circle';
 
-const Main = styled.div`
+const Wrapper = styled.div`
   position: relative;
   grid-area: 2 / 1 / 3 / 2;
   border-radius: ${({ theme: { border } }) => border.radius};
@@ -67,7 +67,7 @@ const Frame = styled.div`
 `;
 
 const PokedexBottom = ({ children }) => (
-  <Main>
+  <Wrapper>
     <Frame>{children}</Frame>
     <TopCircleContainer>
       <TopCircle />
@@ -80,7 +80,7 @@ const PokedexBottom = ({ children }) => (
       <Line />
       <Line />
     </Speaker>
-  </Main>
+  </Wrapper>
 );
 
 PokedexBottom.propTypes = {
