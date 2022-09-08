@@ -6,8 +6,8 @@ const Wrapper = styled.main`
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 2.2rem minmax(0, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
   max-width: ${({ theme: { layout } }) => layout.containerWidth};
   width: 100%;
   height: 100vh;
