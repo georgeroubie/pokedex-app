@@ -44,13 +44,7 @@ const SearchPokemon = () => {
 
   return (
     <Wrapper>
-      <Input
-        inputMode="text"
-        placeholder="Pokemon name"
-        value={pokemonName}
-        onChange={handleChange}
-        disabled={loading}
-      />
+      <Input type="text" placeholder="Pokemon name" value={pokemonName} onChange={handleChange} disabled={loading} />
       <PokemonNames pokemons={filteredPokemonNames} onClick={() => setPokemonName('')} />
     </Wrapper>
   );
