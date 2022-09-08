@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Main = styled.div`
-  height: calc(${({ theme: { layout } }) => `${layout.topHeight} - ${layout.menuHeight}`});
+  grid-area: 1 / 1 / 2 / 2;
   padding-bottom: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
@@ -12,7 +12,6 @@ const Frame = styled.div`
   background-color: ${({ theme: { colors } }) => colors.backgroundPrimary};
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
   overflow-y: auto;
 `;
 

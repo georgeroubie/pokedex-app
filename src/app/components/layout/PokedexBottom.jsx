@@ -4,7 +4,7 @@ import _Circle from '../shapes/Circle';
 
 const Main = styled.div`
   position: relative;
-  height: calc(${({ theme: { spacing, layout } }) => `${layout.bottomHeight} - ${spacing.large}`});
+  grid-area: 2 / 1 / 3 / 2;
   border-radius: ${({ theme: { border } }) => border.radius};
   background-color: ${({ theme: { colors } }) => colors.borderSecondary};
   padding: ${({ theme: { spacing } }) => `${spacing.large} ${spacing.large} ${spacing.xlarge}`};
