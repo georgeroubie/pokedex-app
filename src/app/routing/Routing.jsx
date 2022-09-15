@@ -8,6 +8,7 @@ import Home from '../pages/home';
 const Settings = lazy(() => import('../pages/settings'));
 const NotFound = lazy(() => import('../pages/not-found'));
 const MiniGames = lazy(() => import('../pages/mini-games'));
+const FindPokemonName = lazy(() => import('../pages/mini-games/find-pokemon-name'));
 const CompleteDonation = lazy(() => import('../pages/donation/Complete'));
 const CancelDonation = lazy(() => import('../pages/donation/Cancel'));
 
@@ -31,6 +32,14 @@ const Routing = () => (
       element={
         <Loader>
           <MiniGames />
+        </Loader>
+      }
+    />
+    <Route
+      path="/mini-games/find-pokemon-name"
+      element={
+        <Loader>
+          <FindPokemonName />
         </Loader>
       }
     />
