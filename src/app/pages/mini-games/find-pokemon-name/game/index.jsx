@@ -1,7 +1,7 @@
 import { useContext, useMemo } from 'react';
 import PageWrapper from '../../../../components/layout/PageWrapper';
 import { AppContext } from '../../../../state/Context';
-import FindPokemonNameGameWrapper from './FindPokemonNameGameWrapper';
+import FindPokemonNameGameWrapper from './Wrapper';
 
 const FindPokemonNameGame = () => {
   const { state } = useContext(AppContext);
