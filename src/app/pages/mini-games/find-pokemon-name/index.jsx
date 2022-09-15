@@ -5,6 +5,7 @@ import PokedexBottom from '../../../components/layout/PokedexBottom';
 import PokedexTop from '../../../components/layout/PokedexTop';
 import Description from '../../../components/typography/Description';
 import Subtitle from '../../../components/typography/Subtitle';
+import { LIVES } from './constants';
 import FindPokemonNameGame from './game';
 
 const TopWrapper = styled.div`
@@ -37,13 +38,13 @@ const FindPokemonName = () => {
     <PageWrapper>
       <PokedexTop>
         <TopWrapper>
-          <Subtitle>Who's that Pokemon</Subtitle>
-          <Description>A random Pokemon will appear and you have to find its name.</Description>
+          <Subtitle>Who's that Pokemon?</Subtitle>
+          <Description>Find the pokemon name, you have {LIVES} lives.</Description>
         </TopWrapper>
       </PokedexTop>
       <PokedexBottom>
         <StartButton type="button" onClick={() => setStartGame(true)}>
-          Start
+          START
         </StartButton>
       </PokedexBottom>
     </PageWrapper>
