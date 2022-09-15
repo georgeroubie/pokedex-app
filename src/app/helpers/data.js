@@ -33,8 +33,8 @@ function transformPokemonData(data) {
     species: data.species,
     types: data.types,
     sprites: {
-      front_default: data.sprites?.front_default,
-      back_default: data.sprites?.back_default,
+      front: data.sprites?.front_default,
+      back: data.sprites?.back_default,
     },
   };
 }
