@@ -1,6 +1,7 @@
 import { useContext, useMemo } from 'react';
 import PageWrapper from '../../../../components/layout/PageWrapper';
 import { AppContext } from '../../../../state/Context';
+import { INVALID_CHARACTERS } from '../constants';
 import FindPokemonNameGameWrapper from './Wrapper';
 
 const FindPokemonNameGame = () => {
@@ -14,8 +15,7 @@ const FindPokemonNameGame = () => {
 
     return pokemonNames.filter(({ name }) => {
       let includePokemon = true;
-      const invalidCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-'];
-      invalidCharacters.forEach((character) => {
+      INVALID_CHARACTERS.forEach((character) => {
         if (name.includes(character)) {
           includePokemon = false;
         }
