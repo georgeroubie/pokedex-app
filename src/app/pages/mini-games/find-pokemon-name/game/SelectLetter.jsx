@@ -43,7 +43,7 @@ const SelectLetter = ({ game, setGame }) => {
   return (
     <SelectLetterButtonsWrapper>
       {LETTERS.map((l) => (
-        <SelectLetterButton key={l} onClick={() => onLetterClick(l)}>
+        <SelectLetterButton key={l} disabled={foundNameArray.includes(l)} onClick={() => onLetterClick(l)}>
           {l}
         </SelectLetterButton>
       ))}
