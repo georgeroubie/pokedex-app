@@ -48,8 +48,9 @@ const BlurredPokemon = ({ game }) => {
     <Wrapper>
       <Image src={image} alt="" $blur={!pokemonWasFound} />
       <LettersWrapper>
-        {foundNameArray.map((l) => (
-          <Letter key={Date.now() + Math.random()}>{l ? l : '_'}</Letter>
+        {foundNameArray.map((l, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Letter key={index + l}>{l ? l : '_'}</Letter>
         ))}
       </LettersWrapper>
     </Wrapper>
