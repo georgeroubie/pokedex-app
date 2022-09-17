@@ -24,20 +24,33 @@ const SelectLetterButton = styled.button`
 `;
 
 const SelectLetter = ({ game, setGame }) => {
-  const { nameArray, foundNameArray } = game;
+  const { nameArray, foundNameArray } = game || {};
 
   function onLetterClick(selectedLetter) {
+    let letterWasFound = false;
     const updatedFoundNameArray = foundNameArray.map((letter, index) => {
       if (nameArray[index] === selectedLetter) {
+        letterWasFound = true;
         return selectedLetter;
       }
       return letter;
     });
 
-    setGame((prevGame) => ({
-      ...prevGame,
-      foundNameArray: updatedFoundNameArray,
-    }));
+    if (letterWasFound) {
+      setGame((prevGame) => ({
+        ...prevGame,
+        foundNameArray: updatedFoundNameArray,
+      }));
+    } else {
+      setGame((prevGame) => ({
+        ...prevGame,
+        lives: prevGame.lives - 1,
+      }));
+    }
+  }
+
+  if (!game) {
+    return null;
   }
 
   return (
@@ -53,13 +66,13 @@ const SelectLetter = ({ game, setGame }) => {
 
 SelectLetter.propTypes = {
   game: PropTypes.shape({
-    lives: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    nameArray: PropTypes.arrayOf(PropTypes.string).isRequired,
-    foundNameArray: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }).isRequired,
-  setGame: PropTypes.func.isRequired,
+    lives: PropTypes.number,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    nameArray: PropTypes.arrayOf(PropTypes.string),
+    foundNameArray: PropTypes.arrayOf(PropTypes.string),
+  }),
+  setGame: PropTypes.func,
 };
 
 export default SelectLetter;
