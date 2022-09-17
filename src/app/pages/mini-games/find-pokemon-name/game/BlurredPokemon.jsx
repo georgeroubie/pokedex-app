@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import styled, { css } from 'styled-components';
+import Status from './Status';
 
 const Wrapper = styled.div`
   padding: ${({ theme: { spacing } }) => `0 ${spacing.normal} ${spacing.normal}`};
@@ -30,8 +31,7 @@ const Letter = styled.span`
 `;
 
 const BlurredPokemon = ({ game }) => {
-  console.log(game);
-  const { image, nameArray, foundNameArray } = game;
+  const { image, lives, nameArray, foundNameArray } = game || {};
 
   const pokemonWasFound = useMemo(() => {
     let wasFound = true;
@@ -44,27 +44,38 @@ const BlurredPokemon = ({ game }) => {
     return wasFound;
   }, [nameArray, foundNameArray]);
 
+  if (!game) {
+    return null;
+  }
+
   return (
     <Wrapper>
       <Image src={image} alt="" $blur={!pokemonWasFound} />
-      <LettersWrapper>
-        {foundNameArray.map((l, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <Letter key={index + l}>{l ? l : '_'}</Letter>
-        ))}
-      </LettersWrapper>
+      {pokemonWasFound ? (
+        'YOU WIN'
+      ) : (
+        <>
+          <LettersWrapper>
+            {foundNameArray.map((l, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <Letter key={index + l}>{l ? l : '_'}</Letter>
+            ))}
+          </LettersWrapper>
+          <Status lives={lives} />
+        </>
+      )}
     </Wrapper>
   );
 };
 
 BlurredPokemon.propTypes = {
   game: PropTypes.shape({
-    lives: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    nameArray: PropTypes.arrayOf(PropTypes.string).isRequired,
-    foundNameArray: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }).isRequired,
+    lives: PropTypes.number,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    nameArray: PropTypes.arrayOf(PropTypes.string),
+    foundNameArray: PropTypes.arrayOf(PropTypes.string),
+  }),
 };
 
 export default BlurredPokemon;
