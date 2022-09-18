@@ -1,36 +1,45 @@
-import { useContext, useMemo } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import PageWrapper from '../../../../components/layout/PageWrapper';
-import { AppContext } from '../../../../state/Context';
-import { INVALID_CHARACTERS } from '../constants';
-import FindPokemonNameGameWrapper from './Wrapper';
+import PokedexBottom from '../../../../components/layout/PokedexBottom';
+import PokedexTop from '../../../../components/layout/PokedexTop';
+import { getPokemonData, transformPokemonIdToPokemonApiUrl } from '../../../../helpers/requests';
+import { LIVES } from '../constants';
+import BlurredPokemon from './BlurredPokemon';
+import SelectLetter from './SelectLetter';
 
 const FindPokemonNameGame = () => {
-  const { state } = useContext(AppContext);
-  const { pokemonNames } = state;
+  const [game, setGame] = useState();
+  const { id } = useParams();
 
-  const availablePokemonNames = useMemo(() => {
-    if (!pokemonNames?.length) {
-      return null;
-    }
+  const startGame = useCallback(async () => {
+    const pokemon = await getPokemonData(transformPokemonIdToPokemonApiUrl(id));
 
-    return pokemonNames.filter(({ name }) => {
-      let includePokemon = true;
-      INVALID_CHARACTERS.forEach((character) => {
-        if (name.includes(character)) {
-          includePokemon = false;
-        }
-      });
-      return includePokemon;
+    setGame({
+      lives: LIVES,
+      name: pokemon.name,
+      image: pokemon.sprites.front,
+      nameArray: pokemon.name.split(''),
+      foundNameArray: pokemon.name.split('').map(() => ''),
     });
-  }, [pokemonNames]);
+  }, [id]);
 
-  if (!availablePokemonNames) {
+  useEffect(() => {
+    startGame();
+  }, [id, startGame]);
+
+  if (!game) {
     return null;
   }
 
   return (
     <PageWrapper>
-      <FindPokemonNameGameWrapper pokemonNames={availablePokemonNames} />
+      <PokedexTop>
+        <BlurredPokemon game={game} />
+      </PokedexTop>
+      <PokedexBottom>
+        <SelectLetter game={game} setGame={setGame} />
+      </PokedexBottom>
     </PageWrapper>
   );
 };
