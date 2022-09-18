@@ -49,10 +49,6 @@ const SelectLetter = ({ game, setGame }) => {
     }
   }
 
-  if (!game) {
-    return null;
-  }
-
   return (
     <SelectLetterButtonsWrapper>
       {LETTERS.map((l) => (
