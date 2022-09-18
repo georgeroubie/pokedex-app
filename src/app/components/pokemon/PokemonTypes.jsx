@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 const Type = styled.span`
   padding: ${({ theme: { spacing } }) => spacing.small};
   color: #000;
-  font-weight: bold;
+  font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
   display: inline-block;
 `;
 
