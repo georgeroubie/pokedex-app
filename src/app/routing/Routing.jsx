@@ -9,6 +9,7 @@ const Settings = lazy(() => import('../pages/settings'));
 const NotFound = lazy(() => import('../pages/not-found'));
 const MiniGames = lazy(() => import('../pages/mini-games'));
 const FindPokemonName = lazy(() => import('../pages/mini-games/find-pokemon-name'));
+const FindPokemonNameGame = lazy(() => import('../pages/mini-games/find-pokemon-name/game'));
 const CompleteDonation = lazy(() => import('../pages/donation/Complete'));
 const CancelDonation = lazy(() => import('../pages/donation/Cancel'));
 
@@ -40,6 +41,15 @@ const Routing = () => (
       element={
         <Loader>
           <FindPokemonName />
+        </Loader>
+      }
+    />
+
+    <Route
+      path="/mini-games/find-pokemon-name/:id"
+      element={
+        <Loader>
+          <FindPokemonNameGame />
         </Loader>
       }
     />
