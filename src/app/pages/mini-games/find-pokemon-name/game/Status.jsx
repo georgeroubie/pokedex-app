@@ -13,19 +13,35 @@ const HitPointsWrapper = styled.div`
 
 const HitPointsProgressBarWrapper = styled.div`
   display: flex;
+  align-items: center;
+  gap: ${({ theme: { spacing } }) => spacing.xsmall};
   padding: ${({ theme: { spacing } }) => spacing.xsmall};
 `;
 
-const HitPointsDescription = styled.span``;
+const HitPointsDescription = styled.span`
+  font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
+  font-size: ${({ theme: { fontSize } }) => fontSize.small};
+`;
 
 const HitPointsProgressBar = styled.div`
-  background-color: green;
+  border: 2px solid ${({ theme: { colors } }) => colors.borderPrimary};
+  border-radius: ${({ theme: { border } }) => border.radius};
+  height: ${({ theme: { lineHeight } }) => lineHeight.small};
+  width: 100%;
+  overflow: hidden;
 
-  ${({ $width }) =>
-    $width &&
-    css`
-      width: ${$width}%;
-    `};
+  &::before {
+    content: '';
+    display: flex;
+    height: 100%;
+    width: 0;
+    background-color: green;
+    ${({ $width }) =>
+      $width > 0 &&
+      css`
+        width: ${$width}%;
+      `};
+  }
 `;
 
 const Status = ({ lives }) => {
@@ -35,7 +51,7 @@ const Status = ({ lives }) => {
     <Wrapper>
       <HitPointsWrapper>
         <HitPointsProgressBarWrapper>
-          <HitPointsDescription>HP</HitPointsDescription>
+          <HitPointsDescription>HP:</HitPointsDescription>
           <HitPointsProgressBar $width={width}></HitPointsProgressBar>
         </HitPointsProgressBarWrapper>
       </HitPointsWrapper>
