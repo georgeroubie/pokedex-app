@@ -7,6 +7,7 @@ import Description from '../../../components/typography/Description';
 import Subtitle from '../../../components/typography/Subtitle';
 import { LIVES } from './constants';
 import useGetRandomPokemonId from './hooks/useGetRandomPokemonId';
+import { FindPokemonNameProvider } from './state/Context';
 
 const TopWrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
@@ -31,17 +32,19 @@ const FindPokemonName = () => {
   const randomPokemonId = useGetRandomPokemonId();
 
   return (
-    <PageWrapper>
-      <PokedexTop>
-        <TopWrapper>
-          <Subtitle>Who's that Pokemon?</Subtitle>
-          <Description>Find the pokemon name, you have {LIVES} lives.</Description>
-        </TopWrapper>
-      </PokedexTop>
-      <PokedexBottom>
-        <NavLink to={`/mini-games/find-pokemon-name/${randomPokemonId}`}>START</NavLink>
-      </PokedexBottom>
-    </PageWrapper>
+    <FindPokemonNameProvider>
+      <PageWrapper>
+        <PokedexTop>
+          <TopWrapper>
+            <Subtitle>Who's that Pokemon?</Subtitle>
+            <Description>Find the pokemon name, you have {LIVES} lives.</Description>
+          </TopWrapper>
+        </PokedexTop>
+        <PokedexBottom>
+          <NavLink to={`/mini-games/find-pokemon-name/${randomPokemonId}`}>START</NavLink>
+        </PokedexBottom>
+      </PageWrapper>
+    </FindPokemonNameProvider>
   );
 };
 
