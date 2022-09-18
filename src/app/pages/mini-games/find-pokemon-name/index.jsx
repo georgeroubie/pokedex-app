@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { NavLink as _NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import PageWrapper from '../../../components/layout/PageWrapper';
 import PokedexBottom from '../../../components/layout/PokedexBottom';
@@ -6,13 +6,13 @@ import PokedexTop from '../../../components/layout/PokedexTop';
 import Description from '../../../components/typography/Description';
 import Subtitle from '../../../components/typography/Subtitle';
 import { LIVES } from './constants';
-import FindPokemonNameGame from './game';
+import useGetRandomPokemonId from './hooks/useGetRandomPokemonId';
 
 const TopWrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
-const StartButton = styled.button`
+const NavLink = styled(_NavLink)`
   display: block;
   width: 100%;
   text-align: center;
@@ -28,11 +28,7 @@ const StartButton = styled.button`
 `;
 
 const FindPokemonName = () => {
-  const [startGame, setStartGame] = useState(false);
-
-  if (startGame) {
-    return <FindPokemonNameGame />;
-  }
+  const randomPokemonId = useGetRandomPokemonId();
 
   return (
     <PageWrapper>
@@ -43,9 +39,7 @@ const FindPokemonName = () => {
         </TopWrapper>
       </PokedexTop>
       <PokedexBottom>
-        <StartButton type="button" onClick={() => setStartGame(true)}>
-          START
-        </StartButton>
+        <NavLink to={`/mini-games/find-pokemon-name/${randomPokemonId}`}>START</NavLink>
       </PokedexBottom>
     </PageWrapper>
   );
