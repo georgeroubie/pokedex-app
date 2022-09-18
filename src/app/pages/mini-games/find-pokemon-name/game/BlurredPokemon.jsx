@@ -4,6 +4,11 @@ import styled, { css } from 'styled-components';
 import Status from './Status';
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: ${({ theme: { spacing } }) => spacing.normal};
+  min-height: 100%;
   padding: ${({ theme: { spacing } }) => `0 ${spacing.normal} ${spacing.normal}`};
 `;
 
@@ -43,10 +48,6 @@ const BlurredPokemon = ({ game }) => {
 
     return wasFound;
   }, [nameArray, foundNameArray]);
-
-  if (!game) {
-    return null;
-  }
 
   return (
     <Wrapper>
