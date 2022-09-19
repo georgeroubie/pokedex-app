@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { NavLink as _NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import PageWrapper from '../../../components/layout/PageWrapper';
@@ -5,6 +6,7 @@ import PokedexBottom from '../../../components/layout/PokedexBottom';
 import PokedexTop from '../../../components/layout/PokedexTop';
 import Description from '../../../components/typography/Description';
 import Subtitle from '../../../components/typography/Subtitle';
+import { AppContext } from '../../../state/Context';
 import { LIVES } from './constants';
 import useGetRandomPokemonId from './hooks/useGetRandomPokemonId';
 import { FindPokemonNameProvider } from './state/Context';
@@ -29,10 +31,12 @@ const NavLink = styled(_NavLink)`
 `;
 
 const FindPokemonName = () => {
+  const { state } = useContext(AppContext);
+  const { pokemonNames } = state;
   const randomPokemonId = useGetRandomPokemonId();
 
   return (
-    <FindPokemonNameProvider>
+    <FindPokemonNameProvider pokemonNames={pokemonNames}>
       <PageWrapper>
         <PokedexTop>
           <TopWrapper>
