@@ -7,7 +7,6 @@ const findPokemonNameReducer = (state, { type, value }) => {
         ...state,
         loading: value,
       };
-
     case actionTypes.UPDATE_LIVES:
       return {
         ...state,
