@@ -14,6 +14,7 @@ const FindPokemonNameGame = () => {
 
   const startGame = useCallback(async () => {
     const pokemon = await getPokemonData(transformPokemonIdToPokemonApiUrl(id));
+    console.log(pokemon);
 
     setGame({
       lives: LIVES,
