@@ -1,6 +1,6 @@
 # General information
 
-A [Pokedex app](https://pokedex.click) that will help you in your pokemon journey.
+A [Pokedex app](https://pokedex.click) that will help you in your pokemon journey. 
 
 All the data are provided from the [pokeapi](https://pokeapi.co).
 
