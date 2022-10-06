@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { LETTERS } from '../constants';
 import { FindPokemonNameContext } from '../state/Context';
@@ -22,11 +22,16 @@ const SelectLetterButton = styled.button`
   color: ${({ theme: { colors } }) => colors.backgroundPrimary};
   font-size: ${({ theme: { fontSize } }) => fontSize.normal};
   line-height: ${({ theme: { lineHeight } }) => lineHeight.normal};
+
+  &:disabled {
+    opacity: 0.3;
+  }
 `;
 
 const SelectLetter = () => {
+  const [clickedLetters, setClickedLetters] = useState([]);
   const { state, setLives, setPlayerFounds } = useContext(FindPokemonNameContext);
-  const { lives, pokemon, playerFounds } = state;
+  const { loading, lives, pokemon, playerFounds } = state;
   const { nameArray } = pokemon;
 
   function onLetterClick(selectedLetter) {
@@ -44,12 +49,22 @@ const SelectLetter = () => {
     } else {
       setLives(lives - 1);
     }
+
+    setClickedLetters((prevClickedLetters) => [...prevClickedLetters, selectedLetter]);
+  }
+
+  if (loading) {
+    return null;
+  }
+
+  if (lives === 0) {
+    return `You lost, the pokemon name was ${pokemon.name}. Try again.`;
   }
 
   return (
     <SelectLetterButtonsWrapper>
       {LETTERS.map((l) => (
-        <SelectLetterButton key={l} disabled={playerFounds.includes(l)} onClick={() => onLetterClick(l)}>
+        <SelectLetterButton key={l} disabled={clickedLetters.includes(l)} onClick={() => onLetterClick(l)}>
           {l}
         </SelectLetterButton>
       ))}
