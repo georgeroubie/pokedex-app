@@ -5,7 +5,7 @@ A [Pokedex app](https://pokedex.click) that will help you in your pokemon journe
 All the data are provided from the [pokeapi](https://pokeapi.co).
 
 If you like it give the repository a star and follow me on [LinkedIn](https://www.linkedin.com/in/georgeroubie) and [Medium](https://george-roubie.medium.com). 
- 
+
 # Development
 
 ## Requirements
