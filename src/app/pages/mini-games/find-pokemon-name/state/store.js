@@ -57,6 +57,7 @@ const useFindPokemonNameState = (pokemonNames) => {
 
     const randomIndex = randomNumber(0, availablePokemons.length - 1);
     const pokemon = await getPokemonData(availablePokemons[randomIndex].url);
+    console.log(pokemon.name);
 
     setLives(LIVES);
     setPokemon({
