@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import { LIVES } from '../constants';
+import { FindPokemonNameContext } from '../state/Context';
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,7 +44,9 @@ const HitPointsProgressBar = styled.div`
   }
 `;
 
-const Status = ({ lives }) => {
+const Status = () => {
+  const { state } = useContext(FindPokemonNameContext);
+  const { lives } = state;
   const width = useMemo(() => (100 * lives) / LIVES, [lives]);
 
   return (
@@ -57,10 +59,6 @@ const Status = ({ lives }) => {
       </HitPointsWrapper>
     </Wrapper>
   );
-};
-
-Status.propTypes = {
-  lives: PropTypes.number.isRequired,
 };
 
 export default Status;
