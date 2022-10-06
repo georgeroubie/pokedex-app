@@ -37,7 +37,7 @@ const Letter = styled.span`
 
 const BlurredPokemon = () => {
   const { state } = useContext(FindPokemonNameContext);
-  const { pokemon, lives, playerFounds } = state;
+  const { loading, pokemon, playerFounds } = state;
   const { image, nameArray } = pokemon;
 
   const pokemonWasFound = useMemo(() => {
@@ -50,6 +50,10 @@ const BlurredPokemon = () => {
 
     return wasFound;
   }, [nameArray, playerFounds]);
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <Wrapper>
@@ -64,7 +68,7 @@ const BlurredPokemon = () => {
               <Letter key={index + l}>{l ? l : '_'}</Letter>
             ))}
           </LettersWrapper>
-          <Status lives={lives} />
+          <Status />
         </>
       )}
     </Wrapper>
