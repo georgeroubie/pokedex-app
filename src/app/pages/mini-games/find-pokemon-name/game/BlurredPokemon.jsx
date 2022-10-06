@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import styled, { css } from 'styled-components';
+import { FindPokemonNameContext } from '../state/Context';
 import Status from './Status';
 
 const Wrapper = styled.div`
@@ -35,19 +35,21 @@ const Letter = styled.span`
   font-size: ${({ theme: { fontSize } }) => fontSize.large};
 `;
 
-const BlurredPokemon = ({ game }) => {
-  const { image, lives, nameArray, foundNameArray } = game || {};
+const BlurredPokemon = () => {
+  const { state } = useContext(FindPokemonNameContext);
+  const { pokemon, lives, playerFounds } = state;
+  const { image, nameArray } = pokemon;
 
   const pokemonWasFound = useMemo(() => {
     let wasFound = true;
-    foundNameArray.forEach((letter, index) => {
+    playerFounds.forEach((letter, index) => {
       if (letter !== nameArray[index]) {
         wasFound = false;
       }
     });
 
     return wasFound;
-  }, [nameArray, foundNameArray]);
+  }, [nameArray, playerFounds]);
 
   return (
     <Wrapper>
@@ -57,7 +59,7 @@ const BlurredPokemon = ({ game }) => {
       ) : (
         <>
           <LettersWrapper>
-            {foundNameArray.map((l, index) => (
+            {playerFounds.map((l, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <Letter key={index + l}>{l ? l : '_'}</Letter>
             ))}
@@ -67,16 +69,6 @@ const BlurredPokemon = ({ game }) => {
       )}
     </Wrapper>
   );
-};
-
-BlurredPokemon.propTypes = {
-  game: PropTypes.shape({
-    lives: PropTypes.number,
-    name: PropTypes.string,
-    image: PropTypes.string,
-    nameArray: PropTypes.arrayOf(PropTypes.string),
-    foundNameArray: PropTypes.arrayOf(PropTypes.string),
-  }),
 };
 
 export default BlurredPokemon;
