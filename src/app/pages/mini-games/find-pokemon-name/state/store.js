@@ -5,8 +5,9 @@ import { findPokemonNameReducer } from './reducer';
 
 const useFindPokemonNameState = () => {
   const [state, dispatch] = useReducer(findPokemonNameReducer, {
-    loading: false,
+    loading: true,
     lives: LIVES,
+    score: 0,
     pokemon: {
       name: '',
       image: '',
@@ -23,6 +24,10 @@ const useFindPokemonNameState = () => {
     setState(actionTypes.UPDATE_LOADING, value);
   };
 
+  const setScore = (value) => {
+    setState(actionTypes.UPDATE_SCORE, value);
+  };
+
   const setLives = (value) => {
     setState(actionTypes.UPDATE_LIVES, value);
   };
@@ -37,8 +42,9 @@ const useFindPokemonNameState = () => {
 
   return {
     state,
-    setLives,
     setLoading,
+    setScore,
+    setLives,
     setPokemon,
     setPlayerFounds,
   };
