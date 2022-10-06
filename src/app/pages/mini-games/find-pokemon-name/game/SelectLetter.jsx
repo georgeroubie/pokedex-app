@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { LETTERS } from '../constants';
+import { FindPokemonNameContext } from '../state/Context';
 
 const SelectLetterButtonsWrapper = styled.div`
   display: flex;
@@ -23,12 +24,14 @@ const SelectLetterButton = styled.button`
   line-height: ${({ theme: { lineHeight } }) => lineHeight.normal};
 `;
 
-const SelectLetter = ({ game, setGame }) => {
-  const { nameArray, foundNameArray } = game || {};
+const SelectLetter = () => {
+  const { state, setLives, setPlayerFounds } = useContext(FindPokemonNameContext);
+  const { lives, pokemon, playerFounds } = state;
+  const { nameArray } = pokemon;
 
   function onLetterClick(selectedLetter) {
     let letterWasFound = false;
-    const updatedFoundNameArray = foundNameArray.map((letter, index) => {
+    const updatedFoundNameArray = playerFounds.map((letter, index) => {
       if (nameArray[index] === selectedLetter) {
         letterWasFound = true;
         return selectedLetter;
@@ -37,38 +40,21 @@ const SelectLetter = ({ game, setGame }) => {
     });
 
     if (letterWasFound) {
-      setGame((prevGame) => ({
-        ...prevGame,
-        foundNameArray: updatedFoundNameArray,
-      }));
+      setPlayerFounds(updatedFoundNameArray);
     } else {
-      setGame((prevGame) => ({
-        ...prevGame,
-        lives: prevGame.lives - 1,
-      }));
+      setLives(lives - 1);
     }
   }
 
   return (
     <SelectLetterButtonsWrapper>
       {LETTERS.map((l) => (
-        <SelectLetterButton key={l} disabled={foundNameArray.includes(l)} onClick={() => onLetterClick(l)}>
+        <SelectLetterButton key={l} disabled={playerFounds.includes(l)} onClick={() => onLetterClick(l)}>
           {l}
         </SelectLetterButton>
       ))}
     </SelectLetterButtonsWrapper>
   );
-};
-
-SelectLetter.propTypes = {
-  game: PropTypes.shape({
-    lives: PropTypes.number,
-    name: PropTypes.string,
-    image: PropTypes.string,
-    nameArray: PropTypes.arrayOf(PropTypes.string),
-    foundNameArray: PropTypes.arrayOf(PropTypes.string),
-  }),
-  setGame: PropTypes.func,
 };
 
 export default SelectLetter;
