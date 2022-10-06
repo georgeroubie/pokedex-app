@@ -46,7 +46,7 @@ const Routing = () => (
     />
 
     <Route
-      path="/mini-games/find-pokemon-name/:id"
+      path="/mini-games/find-pokemon-name/play"
       element={
         <Loader>
           <FindPokemonNameGame />

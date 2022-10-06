@@ -8,7 +8,6 @@ import Description from '../../../components/typography/Description';
 import Subtitle from '../../../components/typography/Subtitle';
 import { AppContext } from '../../../state/Context';
 import { LIVES } from './constants';
-import useGetRandomPokemonId from './hooks/useGetRandomPokemonId';
 import { FindPokemonNameProvider } from './state/Context';
 
 const TopWrapper = styled.div`
@@ -33,7 +32,6 @@ const NavLink = styled(_NavLink)`
 const FindPokemonName = () => {
   const { state } = useContext(AppContext);
   const { pokemonNames } = state;
-  const randomPokemonId = useGetRandomPokemonId();
 
   return (
     <FindPokemonNameProvider pokemonNames={pokemonNames}>
@@ -45,7 +43,7 @@ const FindPokemonName = () => {
           </TopWrapper>
         </PokedexTop>
         <PokedexBottom>
-          <NavLink to={`/mini-games/find-pokemon-name/${randomPokemonId}`}>START</NavLink>
+          <NavLink to="/mini-games/find-pokemon-name/play">START</NavLink>
         </PokedexBottom>
       </PageWrapper>
     </FindPokemonNameProvider>

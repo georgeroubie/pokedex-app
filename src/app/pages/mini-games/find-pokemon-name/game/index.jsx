@@ -1,19 +1,19 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import PageWrapper from '../../../../components/layout/PageWrapper';
 import PokedexBottom from '../../../../components/layout/PokedexBottom';
 import PokedexTop from '../../../../components/layout/PokedexTop';
 import { getPokemonData, transformPokemonIdToPokemonApiUrl } from '../../../../helpers/requests';
 import { LIVES } from '../constants';
+import useGetRandomPokemonId from '../hooks/useGetRandomPokemonId';
 import BlurredPokemon from './BlurredPokemon';
 import SelectLetter from './SelectLetter';
 
 const FindPokemonNameGame = () => {
   const [game, setGame] = useState();
-  const { id } = useParams();
+  const randomPokemonId = useGetRandomPokemonId();
 
   const startGame = useCallback(async () => {
-    const pokemon = await getPokemonData(transformPokemonIdToPokemonApiUrl(id));
+    const pokemon = await getPokemonData(transformPokemonIdToPokemonApiUrl(randomPokemonId));
 
     setGame({
       lives: LIVES,
@@ -22,11 +22,11 @@ const FindPokemonNameGame = () => {
       nameArray: pokemon.name.split(''),
       foundNameArray: pokemon.name.split('').map(() => ''),
     });
-  }, [id]);
+  }, [randomPokemonId]);
 
   useEffect(() => {
     startGame();
-  }, [id, startGame]);
+  }, [randomPokemonId, startGame]);
 
   if (!game) {
     return null;
