@@ -4,11 +4,14 @@ import { useFindPokemonNameState } from './store';
 
 const FindPokemonNameContext = createContext();
 
-const FindPokemonNameProvider = ({ children }) => (
-  <FindPokemonNameContext.Provider value={useFindPokemonNameState()}>{children}</FindPokemonNameContext.Provider>
+const FindPokemonNameProvider = ({ pokemonNames, children }) => (
+  <FindPokemonNameContext.Provider value={useFindPokemonNameState(pokemonNames)}>
+    {children}
+  </FindPokemonNameContext.Provider>
 );
 
 FindPokemonNameProvider.propTypes = {
+  pokemonNames: PropTypes.arrayOf(PropTypes.shape({})),
   children: PropTypes.node.isRequired,
 };
 
