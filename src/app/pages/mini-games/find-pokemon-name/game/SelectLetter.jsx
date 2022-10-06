@@ -30,7 +30,7 @@ const SelectLetterButton = styled.button`
 
 const SelectLetter = () => {
   const [clickedLetters, setClickedLetters] = useState([]);
-  const { state, setLives, setPlayerFounds } = useContext(FindPokemonNameContext);
+  const { state, setLives, setPlayerFounds, startGame } = useContext(FindPokemonNameContext);
   const { loading, lives, pokemon, playerFounds } = state;
   const { nameArray } = pokemon;
 
@@ -53,12 +53,21 @@ const SelectLetter = () => {
     setClickedLetters((prevClickedLetters) => [...prevClickedLetters, selectedLetter]);
   }
 
+  function playAgain() {
+    setClickedLetters([]);
+    startGame();
+  }
+
   if (loading) {
     return null;
   }
 
   if (lives === 0) {
-    return `You lost, the pokemon name was ${pokemon.name}. Try again.`;
+    return (
+      <div>
+        You lost, the pokemon name was {pokemon.name}. <button onClick={playAgain}>Try again</button>
+      </div>
+    );
   }
 
   return (
