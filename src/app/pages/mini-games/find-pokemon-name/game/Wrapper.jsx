@@ -9,11 +9,12 @@ import SelectLetter from './SelectLetter';
 
 const FindPokemonNameGameWrapper = () => {
   const randomPokemonId = useGetRandomPokemonId();
-  const { setPokemon, setPlayerFounds } = useContext(FindPokemonNameContext);
+  const { setPokemon, setPlayerFounds, setLoading } = useContext(FindPokemonNameContext);
 
   const startGame = useCallback(async () => {
     const apiUrl = transformPokemonIdToPokemonApiUrl(randomPokemonId);
     const pokemon = await getPokemonData(apiUrl);
+    console.log(pokemon);
 
     setPokemon({
       name: pokemon.name,
@@ -22,7 +23,9 @@ const FindPokemonNameGameWrapper = () => {
     });
 
     setPlayerFounds(pokemon.name.split('').map(() => ''));
-  }, [randomPokemonId, setPokemon, setPlayerFounds]);
+
+    setLoading(false);
+  }, [randomPokemonId, setPokemon, setPlayerFounds, setLoading]);
 
   useEffect(() => {
     startGame();
