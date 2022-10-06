@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import PageWrapper from '../../../../components/layout/PageWrapper';
 import PokedexBottom from '../../../../components/layout/PokedexBottom';
 import PokedexTop from '../../../../components/layout/PokedexTop';
@@ -7,10 +7,14 @@ import BlurredPokemon from './BlurredPokemon';
 import SelectLetter from './SelectLetter';
 
 const FindPokemonNameGameWrapper = () => {
+  const rendered = useRef(false);
   const { startGame } = useContext(FindPokemonNameContext);
 
   useEffect(() => {
-    startGame();
+    if (!rendered.current) {
+      startGame();
+      rendered.current = true;
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
