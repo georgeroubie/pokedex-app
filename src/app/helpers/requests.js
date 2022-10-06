@@ -60,20 +60,4 @@ function getPokemonTypesData(urls) {
   return axios.all(urls.map((url) => get(url, transformPokemonTypesData)));
 }
 
-function transformPokemonIdToPokemonApiUrl(pokemonId) {
-  return `${API_URL}pokemon/${pokemonId}/`;
-}
-
-function transformPokemonApiUrlToPokemonId(pokemonApiUrl) {
-  return pokemonApiUrl.replace(`${API_URL}pokemon/`, '').replace('/', '');
-}
-
-export {
-  getAllPokemonRecordsData,
-  getPokemonData,
-  getPokemonSpeciesData,
-  getEvolutionChainData,
-  getPokemonTypesData,
-  transformPokemonIdToPokemonApiUrl,
-  transformPokemonApiUrlToPokemonId,
-};
+export { getAllPokemonRecordsData, getPokemonData, getPokemonSpeciesData, getEvolutionChainData, getPokemonTypesData };
