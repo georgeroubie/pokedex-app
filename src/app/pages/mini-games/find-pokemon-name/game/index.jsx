@@ -1,13 +1,17 @@
-import PageWrapper from '../../../../components/layout/PageWrapper';
+import { useContext } from 'react';
+import { AppContext } from '../../../../state/Context';
 import { FindPokemonNameProvider } from '../state/Context';
 import FindPokemonNameGameWrapper from './Wrapper';
 
-const FindPokemonNameGame = () => (
-  <FindPokemonNameProvider>
-    <PageWrapper>
+const FindPokemonNameGame = () => {
+  const { state } = useContext(AppContext);
+  const { pokemonNames } = state;
+
+  return (
+    <FindPokemonNameProvider pokemonNames={pokemonNames}>
       <FindPokemonNameGameWrapper />
-    </PageWrapper>
-  </FindPokemonNameProvider>
-);
+    </FindPokemonNameProvider>
+  );
+};
 
 export default FindPokemonNameGame;
