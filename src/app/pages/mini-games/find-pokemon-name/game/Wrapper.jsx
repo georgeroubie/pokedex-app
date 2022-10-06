@@ -7,13 +7,13 @@ import BlurredPokemon from './BlurredPokemon';
 import SelectLetter from './SelectLetter';
 
 const FindPokemonNameGameWrapper = () => {
-  const rendered = useRef(false);
+  const isGameStarted = useRef(false);
   const { startGame } = useContext(FindPokemonNameContext);
 
   useEffect(() => {
-    if (!rendered.current) {
+    if (!isGameStarted.current) {
       startGame();
-      rendered.current = true;
+      isGameStarted.current = true;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
