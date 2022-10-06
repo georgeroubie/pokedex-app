@@ -23,7 +23,7 @@ const findPokemonNameReducer = (state, { type, value }) => {
     case actionTypes.UPDATE_PLAYER_FOUNDS:
       return {
         ...state,
-        playerFounds: [...state.playerFounds, ...value],
+        playerFounds: value,
       };
     default:
       return state;
