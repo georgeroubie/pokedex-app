@@ -30,6 +30,11 @@ const findPokemonNameReducer = (state, { type, value }) => {
         ...state,
         playerFounds: value,
       };
+    case actionTypes.UPDATE_GAME_STATUS:
+      return {
+        ...state,
+        gameStatus: value,
+      };
     default:
       return state;
   }
