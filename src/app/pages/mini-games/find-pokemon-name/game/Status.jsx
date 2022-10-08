@@ -11,6 +11,23 @@ const HitPointsWrapper = styled.div`
   width: 50%;
 `;
 
+const ScorePointsWrapper = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: ${({ theme: { spacing } }) => spacing.xsmall};
+`;
+
+const ScorePointsDescription = styled.span`
+  font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
+  font-size: ${({ theme: { fontSize } }) => fontSize.small};
+`;
+
+const ScorePoints = styled.span`
+  font-size: ${({ theme: { fontSize } }) => fontSize.small};
+`;
+
 const HitPointsProgressBarWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -46,7 +63,7 @@ const HitPointsProgressBar = styled.div`
 
 const Status = () => {
   const { state } = useContext(FindPokemonNameContext);
-  const { lives } = state;
+  const { lives, score } = state;
   const width = useMemo(() => (100 * lives) / LIVES, [lives]);
 
   return (
@@ -57,6 +74,10 @@ const Status = () => {
           <HitPointsProgressBar $width={width}></HitPointsProgressBar>
         </HitPointsProgressBarWrapper>
       </HitPointsWrapper>
+      <ScorePointsWrapper>
+        <ScorePointsDescription>SCORE:</ScorePointsDescription>
+        <ScorePoints>{score}</ScorePoints>
+      </ScorePointsWrapper>
     </Wrapper>
   );
 };
