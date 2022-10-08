@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { FindPokemonNameContext } from '../state/Context';
 import Status from './Status';
@@ -37,19 +37,8 @@ const Letter = styled.span`
 
 const BlurredPokemon = () => {
   const { state } = useContext(FindPokemonNameContext);
-  const { loading, pokemon, playerFounds } = state;
-  const { image, nameArray } = pokemon;
-
-  const pokemonWasFound = useMemo(() => {
-    let wasFound = true;
-    playerFounds.forEach((letter, index) => {
-      if (letter !== nameArray[index]) {
-        wasFound = false;
-      }
-    });
-
-    return wasFound;
-  }, [nameArray, playerFounds]);
+  const { loading, pokemon, playerFounds, gameStatus } = state;
+  const { image } = pokemon;
 
   if (loading) {
     return null;
@@ -57,20 +46,14 @@ const BlurredPokemon = () => {
 
   return (
     <Wrapper>
-      <Image src={image} alt="" $blur={!pokemonWasFound} />
-      {pokemonWasFound ? (
-        'YOU WIN'
-      ) : (
-        <>
-          <LettersWrapper>
-            {playerFounds.map((l, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <Letter key={index + l}>{l ? l : '_'}</Letter>
-            ))}
-          </LettersWrapper>
-          <Status />
-        </>
-      )}
+      <Image src={image} alt="" $blur={gameStatus === 'ongoing'} />
+      <LettersWrapper>
+        {playerFounds.map((l, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Letter key={index + l}>{l ? l : '_'}</Letter>
+        ))}
+      </LettersWrapper>
+      <Status />
     </Wrapper>
   );
 };
