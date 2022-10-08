@@ -17,6 +17,7 @@ const useFindPokemonNameState = (pokemonNames) => {
     },
     pokemonNames: pokemonNames,
     playerFounds: [],
+    gameStatus: 'ongoing',
   });
 
   function setState(type, value) {
@@ -43,6 +44,10 @@ const useFindPokemonNameState = (pokemonNames) => {
     setState(actionTypes.UPDATE_PLAYER_FOUNDS, value);
   }
 
+  function setGameStatus(value) {
+    setState(actionTypes.UPDATE_GAME_STATUS, value);
+  }
+
   async function startGame() {
     setLoading(true);
     const availablePokemons = pokemonNames.filter(({ name }) => {
@@ -59,6 +64,7 @@ const useFindPokemonNameState = (pokemonNames) => {
     const pokemon = await getPokemonData(availablePokemons[randomIndex].url);
     console.log(pokemon.name);
 
+    setGameStatus('ongoing');
     setLives(LIVES);
     setPokemon({
       name: pokemon.name,
@@ -76,6 +82,7 @@ const useFindPokemonNameState = (pokemonNames) => {
     setLives,
     setPokemon,
     setPlayerFounds,
+    setGameStatus,
     startGame,
   };
 };
