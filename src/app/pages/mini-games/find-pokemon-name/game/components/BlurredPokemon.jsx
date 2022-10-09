@@ -37,12 +37,8 @@ const Letter = styled.span`
 
 const BlurredPokemon = () => {
   const { state } = useContext(FindPokemonNameContext);
-  const { loading, pokemon, playerFounds, gameStatus } = state;
+  const { pokemon, playerFounds, gameStatus } = state;
   const { image } = pokemon;
-
-  if (loading) {
-    return null;
-  }
 
   return (
     <Wrapper>
