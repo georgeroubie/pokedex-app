@@ -28,17 +28,26 @@ const Letter = styled.span`
 const BlurredPokemon = () => {
   const { state } = useContext(FindPokemonNameContext);
   const { pokemon, playerFounds, gameStatus } = state;
-  const { image } = pokemon;
+  const { image, nameArray } = pokemon;
 
   return (
     <>
       <Image src={image} alt="" $blur={gameStatus === 'ongoing'} />
-      <LettersWrapper>
-        {playerFounds.map((l, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <Letter key={index + l}>{l ? l : '_'}</Letter>
-        ))}
-      </LettersWrapper>
+      {gameStatus === 'ongoing' ? (
+        <LettersWrapper>
+          {playerFounds.map((l, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <Letter key={index + l}>{l ? l : '_'}</Letter>
+          ))}
+        </LettersWrapper>
+      ) : (
+        <LettersWrapper>
+          {nameArray.map((l, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <Letter key={index + l}>{l ? l : '_'}</Letter>
+          ))}
+        </LettersWrapper>
+      )}
     </>
   );
 };
