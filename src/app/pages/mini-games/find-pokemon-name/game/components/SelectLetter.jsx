@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import styled from 'styled-components';
+import Description from '../../../../../components/typography/Description';
 import { LETTERS } from '../constants';
 import { FindPokemonNameContext } from '../state/Context';
 
@@ -46,17 +47,19 @@ const SelectLetter = () => {
 
   if (gameStatus === 'win') {
     return (
-      <div>
-        'You are awesome!' <button onClick={playAgain}>Next pokemon</button>
-      </div>
+      <>
+        <Description>You are awesome!</Description>
+        <button onClick={playAgain}>Next pokemon</button>
+      </>
     );
   }
 
   if (gameStatus === 'lost') {
     return (
-      <div>
-        You lost, the pokemon name was {pokemon.name}. <button onClick={playAgain}>Try again</button>
-      </div>
+      <>
+        <Description>You lost, the pokemon name was {pokemon.name}.</Description>
+        <button onClick={playAgain}>Try again</button>
+      </>
     );
   }
 
