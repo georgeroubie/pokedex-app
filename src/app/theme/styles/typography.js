@@ -14,6 +14,11 @@ const typography = css`
 
   a {
     color: ${({ theme: { colors } }) => colors.textPrimary};
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
