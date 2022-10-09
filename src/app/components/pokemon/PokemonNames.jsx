@@ -13,13 +13,8 @@ const Wrapper = styled.div`
 
 const Button = styled.button`
   border-radius: 0;
-  border: 0;
   padding: 0 ${({ theme: { spacing } }) => spacing.xsmall};
-  background-color: ${({ theme: { colors } }) => colors.textPrimary};
-  color: ${({ theme: { colors } }) => colors.backgroundPrimary};
   width: max-content;
-  font-size: ${({ theme: { fontSize } }) => fontSize.normal};
-  line-height: ${({ theme: { lineHeight } }) => lineHeight.normal};
 `;
 
 const PokemonNames = ({ className, pokemons, onClick }) => {
