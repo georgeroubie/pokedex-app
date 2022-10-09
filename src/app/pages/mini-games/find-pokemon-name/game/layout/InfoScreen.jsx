@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 import BlurredPokemon from '../components/BlurredPokemon';
 import Status from '../components/Status';
+import { FindPokemonNameContext } from '../state/Context';
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,11 +13,20 @@ const Wrapper = styled.div`
   padding: ${({ theme: { spacing } }) => `0 ${spacing.normal} ${spacing.normal}`};
 `;
 
-const InfoScreen = () => (
-  <Wrapper>
-    <BlurredPokemon />
-    <Status />
-  </Wrapper>
-);
+const InfoScreen = () => {
+  const { state } = useContext(FindPokemonNameContext);
+  const { pokemon } = state;
+
+  if (!pokemon?.name) {
+    return null;
+  }
+
+  return (
+    <Wrapper>
+      <BlurredPokemon />
+      <Status />
+    </Wrapper>
+  );
+};
 
 export default InfoScreen;
