@@ -70,7 +70,7 @@ const SelectLetter = () => {
     );
   }
 
-  if (lives === 0) {
+  if (gameStatus === 'lost') {
     return (
       <div>
         You lost, the pokemon name was {pokemon.name}. <button onClick={playAgain}>Try again</button>
