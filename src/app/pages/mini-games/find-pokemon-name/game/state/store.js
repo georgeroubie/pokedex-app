@@ -1,7 +1,6 @@
 import { useReducer } from 'react';
-import { randomNumber } from '../../../../../helpers/generators';
-import { getPokemonData } from '../../../../../helpers/requests';
-import { INVALID_CHARACTERS, LIVES } from '../constants';
+import { LIVES } from '../constants';
+import getRandomPokemon from '../helpers/random-pokemon';
 import * as actionTypes from './actions';
 import { findPokemonNameReducer } from './reducer';
 
@@ -44,18 +43,7 @@ const useFindPokemonNameState = (pokemonNames) => {
   }
 
   async function startGame() {
-    const availablePokemons = pokemonNames.filter(({ name }) => {
-      let includePokemon = true;
-      INVALID_CHARACTERS.forEach((character) => {
-        if (name.includes(character)) {
-          includePokemon = false;
-        }
-      });
-      return includePokemon;
-    });
-
-    const randomIndex = randomNumber(0, availablePokemons.length - 1);
-    const pokemon = await getPokemonData(availablePokemons[randomIndex].url);
+    const pokemon = await getRandomPokemon(pokemonNames);
     console.log(pokemon.name);
 
     setGameStatus('ongoing');
