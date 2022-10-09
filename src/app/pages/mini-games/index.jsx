@@ -35,7 +35,7 @@ const MiniGames = () => (
       </TopWrapper>
     </PokedexTop>
     <PokedexBottom>
-      <Subtitle>Available games for now</Subtitle>
+      <Subtitle>Games List</Subtitle>
       <List>
         {availableGames.map(({ name, url }) => (
           <ListItem key={name}>
