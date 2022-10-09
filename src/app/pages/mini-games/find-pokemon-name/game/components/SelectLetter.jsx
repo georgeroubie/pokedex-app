@@ -57,7 +57,7 @@ const SelectLetter = () => {
   if (gameStatus === 'lost') {
     return (
       <>
-        <Description>You lost, the pokemon name was {pokemon.name}.</Description>
+        <Description>You lost :(</Description>
         <button onClick={playAgain}>Try again</button>
       </>
     );
