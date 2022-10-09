@@ -10,18 +10,13 @@ const TopWrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
+const List = styled.ul``;
+
+const ListItem = styled.li``;
+
 const NavLink = styled(_NavLink)`
   display: block;
   width: 100%;
-  text-align: center;
-  text-decoration: none;
-  padding: ${({ theme: { spacing } }) => spacing.xsmall};
-  margin-bottom: ${({ theme: { spacing } }) => spacing.normal};
-  border-radius: ${({ theme: { border } }) => border.radius};
-  background-color: ${({ theme: { colors } }) => colors.textPrimary};
-  color: ${({ theme: { colors } }) => colors.backgroundPrimary};
-  font-size: ${({ theme: { fontSize } }) => fontSize.normal};
-  line-height: ${({ theme: { lineHeight } }) => lineHeight.normal};
 `;
 
 const availableGames = [
@@ -40,12 +35,14 @@ const MiniGames = () => (
       </TopWrapper>
     </PokedexTop>
     <PokedexBottom>
-      <Subtitle>Available games now</Subtitle>
-      {availableGames.map(({ name, url }) => (
-        <NavLink key={name} to={url}>
-          {name}
-        </NavLink>
-      ))}
+      <Subtitle>Available games for now</Subtitle>
+      <List>
+        {availableGames.map(({ name, url }) => (
+          <ListItem key={name}>
+            <NavLink to={url}>{name}</NavLink>
+          </ListItem>
+        ))}
+      </List>
     </PokedexBottom>
   </PageWrapper>
 );
