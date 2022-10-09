@@ -4,6 +4,7 @@ import PageWrapper from '../../../components/layout/PageWrapper';
 import PokedexBottom from '../../../components/layout/PokedexBottom';
 import PokedexTop from '../../../components/layout/PokedexTop';
 import Subtitle from '../../../components/typography/Subtitle';
+import { BaseButtonStyle } from '../../../theme/styles/buttons';
 
 const TopWrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
@@ -12,16 +13,7 @@ const TopWrapper = styled.div`
 const NavLink = styled(_NavLink)`
   display: block;
   width: 100%;
-  text-align: center;
-  text-decoration: none;
-  padding: ${({ theme: { spacing } }) => spacing.xsmall};
-  margin-bottom: ${({ theme: { spacing } }) => spacing.normal};
-  border-radius: ${({ theme: { border } }) => border.radius};
-  border: 0;
-  background-color: ${({ theme: { colors } }) => colors.textPrimary};
-  color: ${({ theme: { colors } }) => colors.backgroundPrimary};
-  font-size: ${({ theme: { fontSize } }) => fontSize.normal};
-  line-height: ${({ theme: { lineHeight } }) => lineHeight.normal};
+  ${BaseButtonStyle}
 `;
 
 const FindPokemonName = () => (
