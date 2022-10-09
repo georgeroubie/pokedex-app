@@ -12,26 +12,12 @@ const SelectLetterButtonsWrapper = styled.div`
 
 const SelectLetterButton = styled.button`
   width: 35px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  padding: ${({ theme: { spacing } }) => spacing.xsmall};
-  border-radius: ${({ theme: { border } }) => border.radius};
-  border: 0;
-  background-color: ${({ theme: { colors } }) => colors.textPrimary};
-  color: ${({ theme: { colors } }) => colors.backgroundPrimary};
-  font-size: ${({ theme: { fontSize } }) => fontSize.normal};
-  line-height: ${({ theme: { lineHeight } }) => lineHeight.normal};
-
-  &:disabled {
-    opacity: 0.3;
-  }
 `;
 
 const SelectLetter = () => {
   const [clickedLetters, setClickedLetters] = useState([]);
   const { state, setLives, setPlayerFounds, startGame } = useContext(FindPokemonNameContext);
-  const { loading, lives, gameStatus, pokemon, playerFounds } = state;
+  const { lives, gameStatus, pokemon, playerFounds } = state;
   const { nameArray } = pokemon;
 
   function onLetterClick(selectedLetter) {
@@ -56,10 +42,6 @@ const SelectLetter = () => {
   function playAgain() {
     setClickedLetters([]);
     startGame();
-  }
-
-  if (loading) {
-    return null;
   }
 
   if (gameStatus === 'win') {
