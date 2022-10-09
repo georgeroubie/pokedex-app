@@ -11,6 +11,12 @@ async function getRandomPokemon(pokemonNames) {
 
   const randomIndex = randomNumber(0, availablePokemons.length - 1);
   const pokemon = await getPokemonData(availablePokemons[randomIndex].url);
+
+  // Do not show a pokemon tha has no image
+  if (!pokemon.sprites.front) {
+    return await getRandomPokemon(pokemonNames);
+  }
+
   return pokemon;
 }
 
