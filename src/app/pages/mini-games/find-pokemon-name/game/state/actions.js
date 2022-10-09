@@ -1,4 +1,3 @@
-export const UPDATE_LOADING = 'UPDATE_LOADING';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
 export const UPDATE_LIVES = 'UPDATE_LIVES';
 export const UPDATE_POKEMON = 'UPDATE_POKEMON';
