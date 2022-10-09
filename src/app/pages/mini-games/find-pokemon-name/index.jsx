@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import PageWrapper from '../../../components/layout/PageWrapper';
 import PokedexBottom from '../../../components/layout/PokedexBottom';
 import PokedexTop from '../../../components/layout/PokedexTop';
-import Description from '../../../components/typography/Description';
 import Subtitle from '../../../components/typography/Subtitle';
-import { LIVES } from './constants';
 
 const TopWrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
@@ -31,7 +29,6 @@ const FindPokemonName = () => (
     <PokedexTop>
       <TopWrapper>
         <Subtitle>Who's that Pokemon?</Subtitle>
-        <Description>Find the pokemon name, you have {LIVES} lives.</Description>
       </TopWrapper>
     </PokedexTop>
     <PokedexBottom>
