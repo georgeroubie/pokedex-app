@@ -2,11 +2,6 @@ import * as actionTypes from './actions';
 
 const findPokemonNameReducer = (state, { type, value }) => {
   switch (type) {
-    case actionTypes.UPDATE_LOADING:
-      return {
-        ...state,
-        loading: value,
-      };
     case actionTypes.UPDATE_SCORE:
       return {
         ...state,
