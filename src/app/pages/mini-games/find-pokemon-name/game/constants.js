@@ -1,4 +1,4 @@
-const LIVES = 3;
+const LIVES = 4;
 
 const LETTERS = [
   'a',
