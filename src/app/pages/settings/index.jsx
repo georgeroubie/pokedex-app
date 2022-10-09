@@ -30,7 +30,7 @@ const Label = styled.label`
 `;
 
 const Hyperlink = styled.a`
-  margin: 0 ${({ theme: { spacing } }) => spacing.xsmall};
+  text-decoration: underline;
 `;
 
 const Settings = () => {
@@ -61,15 +61,16 @@ const Settings = () => {
         <Subtitle>About</Subtitle>
         <Description>
           A Pokedex app that will help you in your pokemon journey. The application is created by George Roubie (me).
-          You can find the code of this web application on my GitHub page. If you like it give the repository a star on
+          You can find the code of this web application on my GitHub page. If you like it give the repository a star
+          on&nbsp;
           <Hyperlink href="https://github.com/georgeroubie/pokedex-app" target="_blank" rel="noreferrer">
             GitHub
           </Hyperlink>
-          and follow me on
+          &nbsp;and follow me on
           <Hyperlink href="https://www.linkedin.com/in/georgeroubie" target="_blank" rel="noreferrer">
             LinkedIn
           </Hyperlink>
-          and
+          &nbsp;and&nbsp;
           <Hyperlink href="https://george-roubie.medium.com" target="_blank" rel="noreferrer">
             Medium
           </Hyperlink>
@@ -78,10 +79,11 @@ const Settings = () => {
 
         <Subtitle>Data</Subtitle>
         <Description>
-          All the data are provided from the
+          All the data are provided from the&nbsp;
           <Hyperlink href="https://pokeapi.co" target="_blank" rel="noreferrer">
             pokeapi
           </Hyperlink>
+          .
         </Description>
 
         <Subtitle>Privacy</Subtitle>
