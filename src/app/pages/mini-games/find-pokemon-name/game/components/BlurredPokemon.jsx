@@ -6,11 +6,12 @@ const Image = styled.img`
   display: block;
   margin: 0 auto;
   width: 130px;
-  height: auto;
+  height: 130px;
+  object-fit: cover;
   ${({ $blur }) =>
     $blur &&
     css`
-      filter: blur(2px);
+      filter: blur(1px);
     `}
 `;
 
