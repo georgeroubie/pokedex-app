@@ -44,8 +44,6 @@ const useFindPokemonNameState = (pokemonNames) => {
 
   async function startGame() {
     const pokemon = await getRandomPokemon(pokemonNames);
-    console.log(pokemon.name);
-
     setGameStatus('ongoing');
     setLives(LIVES);
     setPokemon({
