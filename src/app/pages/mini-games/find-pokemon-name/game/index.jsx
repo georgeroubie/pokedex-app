@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AppContext } from '../../../../state/Context';
-import { FindPokemonNameProvider } from '../state/Context';
-import FindPokemonNameGameWrapper from './Wrapper';
+import GameWrapper from './layout/Wrapper';
+import { FindPokemonNameProvider } from './state/Context';
 
 const FindPokemonNameGame = () => {
   const { state } = useContext(AppContext);
@@ -9,7 +9,7 @@ const FindPokemonNameGame = () => {
 
   return (
     <FindPokemonNameProvider pokemonNames={pokemonNames}>
-      <FindPokemonNameGameWrapper />
+      <GameWrapper />
     </FindPokemonNameProvider>
   );
 };
