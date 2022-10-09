@@ -1,16 +1,6 @@
 import { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { FindPokemonNameContext } from '../state/Context';
-import Status from './Status';
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: ${({ theme: { spacing } }) => spacing.normal};
-  min-height: 100%;
-  padding: ${({ theme: { spacing } }) => `0 ${spacing.normal} ${spacing.normal}`};
-`;
 
 const Image = styled.img`
   display: block;
@@ -41,7 +31,7 @@ const BlurredPokemon = () => {
   const { image } = pokemon;
 
   return (
-    <Wrapper>
+    <>
       <Image src={image} alt="" $blur={gameStatus === 'ongoing'} />
       <LettersWrapper>
         {playerFounds.map((l, index) => (
@@ -49,8 +39,7 @@ const BlurredPokemon = () => {
           <Letter key={index + l}>{l ? l : '_'}</Letter>
         ))}
       </LettersWrapper>
-      <Status />
-    </Wrapper>
+    </>
   );
 };
 
