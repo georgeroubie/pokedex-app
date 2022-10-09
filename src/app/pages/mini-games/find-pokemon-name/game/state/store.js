@@ -7,7 +7,6 @@ import { findPokemonNameReducer } from './reducer';
 
 const useFindPokemonNameState = (pokemonNames) => {
   const [state, dispatch] = useReducer(findPokemonNameReducer, {
-    loading: true,
     lives: LIVES,
     score: 0,
     pokemon: {
@@ -22,10 +21,6 @@ const useFindPokemonNameState = (pokemonNames) => {
 
   function setState(type, value) {
     dispatch({ type, value });
-  }
-
-  function setLoading(value) {
-    setState(actionTypes.UPDATE_LOADING, value);
   }
 
   function setScore(value) {
@@ -49,7 +44,6 @@ const useFindPokemonNameState = (pokemonNames) => {
   }
 
   async function startGame() {
-    setLoading(true);
     const availablePokemons = pokemonNames.filter(({ name }) => {
       let includePokemon = true;
       INVALID_CHARACTERS.forEach((character) => {
@@ -72,12 +66,10 @@ const useFindPokemonNameState = (pokemonNames) => {
       nameArray: pokemon.name.split(''),
     });
     setPlayerFounds(pokemon.name.split('').map(() => ''));
-    setLoading(false);
   }
 
   return {
     state,
-    setLoading,
     setScore,
     setLives,
     setPokemon,
