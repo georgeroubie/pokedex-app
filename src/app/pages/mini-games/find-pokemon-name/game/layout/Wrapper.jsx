@@ -1,9 +1,11 @@
 import { useContext, useEffect, useRef } from 'react';
 import PageWrapper from '../../../../../components/layout/PageWrapper';
+import PokedexBottom from '../../../../../components/layout/PokedexBottom';
+import PokedexTop from '../../../../../components/layout/PokedexTop';
 import useGameStatus from '../hooks/useGameStatus';
 import { FindPokemonNameContext } from '../state/Context';
-import Bottom from './Bottom';
-import Top from './Top';
+import InfoScreen from './InfoScreen';
+import InteractionScreen from './InteractionScreen';
 
 const GameWrapper = () => {
   const isGameStarted = useRef(false);
@@ -20,8 +22,12 @@ const GameWrapper = () => {
 
   return (
     <PageWrapper>
-      <Top />
-      <Bottom />
+      <PokedexTop>
+        <InfoScreen />
+      </PokedexTop>
+      <PokedexBottom>
+        <InteractionScreen />
+      </PokedexBottom>
     </PageWrapper>
   );
 };
