@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import { FindPokemonNameContext } from '../state/Context';
 
@@ -32,24 +32,28 @@ const BlurredPokemon = () => {
   const { pokemon, playerFounds, gameStatus } = state;
   const { image, nameArray } = pokemon;
 
+  const letters = useMemo(() => {
+    if (gameStatus === 'ongoing') {
+      return parseLettersArray(playerFounds);
+    }
+    return parseLettersArray(nameArray);
+  }, [gameStatus, playerFounds, nameArray]);
+
+  function parseLettersArray(lettersArray) {
+    return lettersArray.map((l, index) => ({
+      id: l + index,
+      value: l ? l : '_',
+    }));
+  }
+
   return (
     <>
       <Image src={image} alt="" $blur={gameStatus === 'ongoing'} />
-      {gameStatus === 'ongoing' ? (
-        <LettersWrapper>
-          {playerFounds.map((l, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Letter key={index + l}>{l ? l : '_'}</Letter>
-          ))}
-        </LettersWrapper>
-      ) : (
-        <LettersWrapper>
-          {nameArray.map((l, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Letter key={index + l}>{l ? l : '_'}</Letter>
-          ))}
-        </LettersWrapper>
-      )}
+      <LettersWrapper>
+        {letters.map(({ id, value }) => (
+          <Letter key={id}>{value}</Letter>
+        ))}
+      </LettersWrapper>
     </>
   );
 };
