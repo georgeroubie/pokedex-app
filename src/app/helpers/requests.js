@@ -19,15 +19,15 @@ function handleError(exception, reject) {
 function get(url, callback) {
   return new Promise((resolve, reject) => {
     try {
-      if (localStorage.getItem(url)) {
-        const cachedData = JSON.parse(localStorage.getItem(url));
+      if (sessionStorage.getItem(url)) {
+        const cachedData = JSON.parse(sessionStorage.getItem(url));
         resolve(cachedData);
       } else {
         axios
           .get(url)
           .then(({ data }) => {
             const transformedData = callback(data);
-            localStorage.setItem(url, JSON.stringify(transformedData));
+            sessionStorage.setItem(url, JSON.stringify(transformedData));
             resolve(transformedData);
           })
           .catch((ex) => {
