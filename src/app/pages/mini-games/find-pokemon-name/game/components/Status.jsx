@@ -8,11 +8,11 @@ const Wrapper = styled.div`
 `;
 
 const HitPointsWrapper = styled.div`
-  width: 50%;
+  width: 70%;
 `;
 
 const ScorePointsWrapper = styled.div`
-  width: 50%;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
