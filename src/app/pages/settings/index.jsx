@@ -66,7 +66,7 @@ const Settings = () => {
           <Hyperlink href="https://github.com/georgeroubie/pokedex-app" target="_blank" rel="noreferrer">
             GitHub
           </Hyperlink>
-          &nbsp;and follow me on
+          &nbsp;and follow me on&nbsp;
           <Hyperlink href="https://www.linkedin.com/in/georgeroubie" target="_blank" rel="noreferrer">
             LinkedIn
           </Hyperlink>
