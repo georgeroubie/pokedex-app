@@ -58,7 +58,7 @@ const Menu = () => (
       <NavLink to="/">
         <Pokeball />
       </NavLink>
-      <NavLink to="/mini-games">
+      <NavLink to="/mini-games/find-pokemon-name">
         <GameBoy />
       </NavLink>
       <NavLink to="/settings">
