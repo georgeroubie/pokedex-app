@@ -5,8 +5,8 @@ import { FindPokemonNameContext } from '../state/Context';
 const Image = styled.img`
   display: block;
   margin: 0 auto;
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   pointer-events: none;
   ${({ $blur }) =>
