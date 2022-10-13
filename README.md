@@ -1,6 +1,7 @@
 # General information
 
 A [Pokedex app](https://pokedex.click) that will help you in your pokemon journey.
+Also the Pokedex has the mini game "Who's that Pokemon".
 
 All the data are provided from the [pokeapi](https://pokeapi.co).
 
