@@ -60,9 +60,9 @@ const Settings = () => {
       <PokedexBottom>
         <Subtitle>About</Subtitle>
         <Description>
-          A Pokedex app that will help you in your pokemon journey. The application is created by George Roubie (me).
-          You can find the code of this web application on my GitHub page. If you like it give the repository a star
-          on&nbsp;
+          A Pokedex app that will help you in your pokemon journey. Also the Pokedex has the mini game "Who's that
+          Pokemon". The application is created by George Roubie (me). You can find the code of this web application on
+          my GitHub page. If you like it give the repository a star on&nbsp;
           <Hyperlink href="https://github.com/georgeroubie/pokedex-app" target="_blank" rel="noreferrer">
             GitHub
           </Hyperlink>
