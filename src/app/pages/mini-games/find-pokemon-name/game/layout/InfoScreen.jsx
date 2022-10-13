@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: ${({ theme: { spacing } }) => spacing.normal};
+  gap: ${({ theme: { spacing } }) => spacing.small};
   min-height: 100%;
   padding: ${({ theme: { spacing } }) => `0 ${spacing.normal} ${spacing.normal}`};
 `;
