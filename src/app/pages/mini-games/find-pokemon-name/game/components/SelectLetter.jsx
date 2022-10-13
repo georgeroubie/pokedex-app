@@ -11,7 +11,7 @@ const SelectLetterButtonsWrapper = styled.div`
 `;
 
 const SelectLetterButton = styled.button`
-  width: 35px;
+  width: 32px;
 `;
 
 const SelectLetter = () => {
