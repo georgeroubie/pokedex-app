@@ -22,7 +22,7 @@ const SelectLetter = () => {
 
   const onLetterSelect = useCallback(
     (selectedLetter) => {
-      if (playerFounds.includes(selectedLetter)) {
+      if (clickedLetters.includes(selectedLetter)) {
         return;
       }
 
@@ -44,7 +44,7 @@ const SelectLetter = () => {
 
       setClickedLetters((prevClickedLetters) => [...prevClickedLetters, selectedLetter]);
     },
-    [lives, nameArray, playerFounds, setLives, setPlayerFounds],
+    [clickedLetters, lives, nameArray, playerFounds, setLives, setPlayerFounds],
   );
 
   const onKeyDown = useCallback(
