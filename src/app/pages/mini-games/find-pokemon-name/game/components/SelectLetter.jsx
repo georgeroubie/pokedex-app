@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { LETTERS } from '../constants';
 import { FindPokemonNameContext } from '../state/Context';
@@ -20,29 +20,55 @@ const SelectLetter = () => {
   const { lives, pokemon, playerFounds } = state;
   const { nameArray } = pokemon;
 
-  function onLetterClick(selectedLetter) {
-    let letterWasFound = false;
-    const updatedFoundNameArray = playerFounds.map((letter, index) => {
-      if (nameArray[index] === selectedLetter) {
-        letterWasFound = true;
-        return selectedLetter;
+  const onLetterSelect = useCallback(
+    (selectedLetter) => {
+      if (clickedLetters.includes(selectedLetter)) {
+        return;
       }
-      return letter;
-    });
 
-    if (letterWasFound) {
-      setPlayerFounds(updatedFoundNameArray);
-    } else {
-      setLives(lives - 1);
-    }
+      let letterWasFound = false;
 
-    setClickedLetters((prevClickedLetters) => [...prevClickedLetters, selectedLetter]);
-  }
+      const updatedFoundNameArray = playerFounds.map((letter, index) => {
+        if (nameArray[index] === selectedLetter) {
+          letterWasFound = true;
+          return selectedLetter;
+        }
+        return letter;
+      });
+
+      if (letterWasFound) {
+        setPlayerFounds(updatedFoundNameArray);
+      } else {
+        setLives(lives - 1);
+      }
+
+      setClickedLetters((prevClickedLetters) => [...prevClickedLetters, selectedLetter]);
+    },
+    [clickedLetters, lives, nameArray, playerFounds, setLives, setPlayerFounds],
+  );
+
+  const onKeyDown = useCallback(
+    (e) => {
+      const key = e.key.toLowerCase();
+
+      if (key.length !== 1 || !key.match(/[a-z]/)) {
+        return;
+      }
+
+      onLetterSelect(key);
+    },
+    [onLetterSelect],
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyDown, false);
+    return () => window.removeEventListener('keydown', onKeyDown, false);
+  }, [onKeyDown]);
 
   return (
     <SelectLetterButtonsWrapper>
       {LETTERS.map((l) => (
-        <SelectLetterButton key={l} disabled={clickedLetters.includes(l)} onClick={() => onLetterClick(l)}>
+        <SelectLetterButton key={l} disabled={clickedLetters.includes(l)} onClick={() => onLetterSelect(l)}>
           {l}
         </SelectLetterButton>
       ))}

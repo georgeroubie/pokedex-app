@@ -1,21 +1,18 @@
 import { useContext } from 'react';
+import RoundResult from '../components/RoundResult';
 import SelectLetter from '../components/SelectLetter';
 import { FindPokemonNameContext } from '../state/Context';
 
 const InteractionScreen = () => {
-  const { state, startGame } = useContext(FindPokemonNameContext);
+  const { state } = useContext(FindPokemonNameContext);
   const { pokemon, gameStatus } = state;
 
   if (!pokemon?.name) {
     return null;
   }
 
-  if (gameStatus === 'win') {
-    return <button onClick={startGame}>NEXT POKEMON</button>;
-  }
-
-  if (gameStatus === 'lost') {
-    return <button onClick={startGame}>TRY AGAIN</button>;
+  if (gameStatus === 'win' || gameStatus === 'lost') {
+    return <RoundResult />;
   }
 
   return <SelectLetter />;
