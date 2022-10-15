@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect, useMemo } from 'react';
 import { FindPokemonNameContext } from '../state/Context';
 
 const RoundResult = () => {
@@ -23,7 +23,7 @@ const RoundResult = () => {
     return () => window.removeEventListener('keydown', onKeyDown, false);
   }, [onKeyDown]);
 
-  const buttonLabel = gameStatus === 'win' ? 'NEXT POKEMON' : 'TRY AGAIN';
+  const buttonLabel = useMemo(() => (gameStatus === 'win' ? 'NEXT POKEMON' : 'TRY AGAIN'), [gameStatus]);
 
   return <button onClick={startGame}>{buttonLabel}</button>;
 };
