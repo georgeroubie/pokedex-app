@@ -7,10 +7,6 @@ const RoundResult = () => {
 
   const onKeyDown = useCallback(
     (e) => {
-      if (gameStatus !== 'win' && gameStatus !== 'lost') {
-        return;
-      }
-
       const { code } = e;
 
       if (code !== 'Enter' && code !== 'Space') {
@@ -19,7 +15,7 @@ const RoundResult = () => {
 
       startGame();
     },
-    [gameStatus, startGame],
+    [startGame],
   );
 
   useEffect(() => {
