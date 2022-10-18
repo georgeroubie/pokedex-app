@@ -52,8 +52,7 @@
       "no-var": "error",
       "no-undef": "error",
       "no-param-reassign": "error",
-      "no-shadow": "error",
-      "arrow-body-style": "error"
+      "no-shadow": "error"
     }
   },
   "browserslist": {
