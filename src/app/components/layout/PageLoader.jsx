@@ -8,15 +8,17 @@ const TopWrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
-const PageLoader = () => (
-  <PageWrapper>
-    <PokedexTop>
-      <TopWrapper>
-        <Description>Loading...</Description>
-      </TopWrapper>
-    </PokedexTop>
-    <PokedexBottom></PokedexBottom>
-  </PageWrapper>
-);
+const PageLoader = () => {
+  return (
+    <PageWrapper>
+      <PokedexTop>
+        <TopWrapper>
+          <Description>Loading...</Description>
+        </TopWrapper>
+      </PokedexTop>
+      <PokedexBottom></PokedexBottom>
+    </PageWrapper>
+  );
+};
 
 export default PageLoader;
