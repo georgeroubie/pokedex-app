@@ -27,22 +27,6 @@ const PokemonDamage = ({ pokemon }) => {
     doubleDamageFrom: null,
   });
 
-  function combineTypesData(typesData) {
-    return damageTypes.reduce((acc, damageType) => {
-      const data = typesData.first[damageType];
-      data.push(
-        ...typesData.second[damageType].filter(({ name }) => {
-          const alreadyExists = data.filter((type) => type.name === name);
-          return alreadyExists.length === 0;
-        }),
-      );
-      return {
-        ...acc,
-        [damageType]: [...data],
-      };
-    }, {});
-  }
-
   const calculateDamages = useCallback((responses) => {
     let typesData;
     if (responses.length === 1) {
@@ -68,6 +52,22 @@ const PokemonDamage = ({ pokemon }) => {
     const apiUrls = types.map(({ type }) => type.url);
     getPokemonTypesData(apiUrls).then(axios.spread((...responses) => calculateDamages(responses)));
   }, [types, calculateDamages]);
+
+  function combineTypesData(typesData) {
+    return damageTypes.reduce((acc, damageType) => {
+      const data = typesData.first[damageType];
+      data.push(
+        ...typesData.second[damageType].filter(({ name }) => {
+          const alreadyExists = data.filter((type) => type.name === name);
+          return alreadyExists.length === 0;
+        }),
+      );
+      return {
+        ...acc,
+        [damageType]: [...data],
+      };
+    }, {});
+  }
 
   return (
     <>
