@@ -9,20 +9,22 @@ const Wrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
-const CompleteDonation = () => (
-  <PageWrapper>
-    <PokedexTop>
-      <Wrapper>
-        <Title>You are awesome</Title>
-      </Wrapper>
-    </PokedexTop>
-    <PokedexBottom>
-      <Description>
-        Your donation is very prized and will forever be held in high regard in my memory. For this, I thank you and
-        greatly appreciate your support. Also I respect and admire your decision to donate so selflessly.
-      </Description>
-    </PokedexBottom>
-  </PageWrapper>
-);
+const CompleteDonation = () => {
+  return (
+    <PageWrapper>
+      <PokedexTop>
+        <Wrapper>
+          <Title>You are awesome</Title>
+        </Wrapper>
+      </PokedexTop>
+      <PokedexBottom>
+        <Description>
+          Your donation is very prized and will forever be held in high regard in my memory. For this, I thank you and
+          greatly appreciate your support. Also I respect and admire your decision to donate so selflessly.
+        </Description>
+      </PokedexBottom>
+    </PageWrapper>
+  );
+};
 
 export default CompleteDonation;
