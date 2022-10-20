@@ -32,29 +32,27 @@ const PokemonEvolutions = () => {
     [pokemonNames],
   );
 
-  const evolvesTo = useMemo(
-    () =>
-      pokemon?.evolutions?.reduce((acc, evolution) => {
-        if (evolution.pokemon.name === pokemon.name) {
-          const allEvolutions = evolution.evolvesTo.reduce((allEvolutionsAcc, e) => {
-            const url = getPokemonUrl(e.name);
-            if (url) {
-              return [
-                ...allEvolutionsAcc,
-                {
-                  ...e,
-                  url,
-                },
-              ];
-            }
-            return allEvolutionsAcc;
-          }, []);
-          return [...acc, ...allEvolutions];
-        }
-        return acc;
-      }, []),
-    [pokemon.evolutions, pokemon.name, getPokemonUrl],
-  );
+  const evolvesTo = useMemo(() => {
+    return pokemon?.evolutions?.reduce((acc, evolution) => {
+      if (evolution.pokemon.name === pokemon.name) {
+        const allEvolutions = evolution.evolvesTo.reduce((allEvolutionsAcc, e) => {
+          const url = getPokemonUrl(e.name);
+          if (url) {
+            return [
+              ...allEvolutionsAcc,
+              {
+                ...e,
+                url,
+              },
+            ];
+          }
+          return allEvolutionsAcc;
+        }, []);
+        return [...acc, ...allEvolutions];
+      }
+      return acc;
+    }, []);
+  }, [pokemon.evolutions, pokemon.name, getPokemonUrl]);
 
   const evolvesFrom = useMemo(() => {
     const name = pokemon.evolvesFromSpecies;
@@ -67,7 +65,9 @@ const PokemonEvolutions = () => {
     }
   }, [getPokemonUrl, pokemon.evolvesFromSpecies]);
 
-  if (!pokemon) return null;
+  if (!pokemon) {
+    return null;
+  }
 
   if (!evolvesFrom && !evolvesTo?.length) {
     return null;
