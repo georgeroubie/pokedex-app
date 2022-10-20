@@ -4,7 +4,7 @@ import getRandomPokemon from '../helpers/random-pokemon';
 import * as actionTypes from './actions';
 import { findPokemonNameReducer } from './reducer';
 
-const useFindPokemonNameState = (pokemonNames) => {
+function useFindPokemonNameState(pokemonNames) {
   const [state, dispatch] = useReducer(findPokemonNameReducer, {
     lives: LIVES,
     score: 0,
@@ -63,6 +63,6 @@ const useFindPokemonNameState = (pokemonNames) => {
     setGameStatus,
     startGame,
   };
-};
+}
 
 export { useFindPokemonNameState };
