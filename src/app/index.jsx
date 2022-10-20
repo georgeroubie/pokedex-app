@@ -4,15 +4,17 @@ import Routing from './routing/Routing';
 import { AppProvider } from './state/Context';
 import Theme from './theme/Theme';
 
-const App = () => (
-  <AppProvider>
-    <Theme>
-      <AppWrapper>
-        <Menu />
-        <Routing />
-      </AppWrapper>
-    </Theme>
-  </AppProvider>
-);
+const App = () => {
+  return (
+    <AppProvider>
+      <Theme>
+        <AppWrapper>
+          <Menu />
+          <Routing />
+        </AppWrapper>
+      </Theme>
+    </AppProvider>
+  );
+};
 
 export default App;
