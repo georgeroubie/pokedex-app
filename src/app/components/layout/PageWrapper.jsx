@@ -12,7 +12,9 @@ const Wrapper = styled.div`
   grid-row-gap: 0;
 `;
 
-const PageWrapper = ({ children }) => <Wrapper>{children}</Wrapper>;
+const PageWrapper = ({ children }) => {
+  return <Wrapper>{children}</Wrapper>;
+};
 
 PageWrapper.propTypes = {
   children: PropTypes.node.isRequired,
