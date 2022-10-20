@@ -26,25 +26,27 @@ const availableGames = [
   },
 ];
 
-const MiniGames = () => (
-  <PageWrapper>
-    <PokedexTop>
-      <TopWrapper>
-        <Subtitle>Mini-games</Subtitle>
-        <Description>Let's have some fun!</Description>
-      </TopWrapper>
-    </PokedexTop>
-    <PokedexBottom>
-      <Subtitle>Games List</Subtitle>
-      <List>
-        {availableGames.map(({ name, url }) => (
-          <ListItem key={name}>
-            <NavLink to={url}>{name}</NavLink>
-          </ListItem>
-        ))}
-      </List>
-    </PokedexBottom>
-  </PageWrapper>
-);
+const MiniGames = () => {
+  return (
+    <PageWrapper>
+      <PokedexTop>
+        <TopWrapper>
+          <Subtitle>Mini-games</Subtitle>
+          <Description>Let's have some fun!</Description>
+        </TopWrapper>
+      </PokedexTop>
+      <PokedexBottom>
+        <Subtitle>Games List</Subtitle>
+        <List>
+          {availableGames.map(({ name, url }) => (
+            <ListItem key={name}>
+              <NavLink to={url}>{name}</NavLink>
+            </ListItem>
+          ))}
+        </List>
+      </PokedexBottom>
+    </PageWrapper>
+  );
+};
 
 export default MiniGames;
