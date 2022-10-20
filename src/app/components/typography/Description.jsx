@@ -8,7 +8,9 @@ const Wrapper = styled.div`
   margin: 0 0 ${({ theme: { spacing } }) => spacing.xsmall};
 `;
 
-const Description = ({ children }) => <Wrapper>{children}</Wrapper>;
+const Description = ({ children }) => {
+  return <Wrapper>{children}</Wrapper>;
+};
 
 Description.propTypes = {
   children: PropTypes.node.isRequired,
