@@ -47,25 +47,27 @@ const Pokeball = styled(_Pokeball)`
   height: 1.8rem;
 `;
 
-const Menu = () => (
-  <Wrapper>
-    <Loader>
-      <Circle />
-      <Circle color="yellow" />
-      <Circle color="green" />
-    </Loader>
-    <NavLinkWrapper>
-      <NavLink to="/">
-        <Pokeball />
-      </NavLink>
-      <NavLink to="/mini-games/find-pokemon-name">
-        <GameBoy />
-      </NavLink>
-      <NavLink to="/settings">
-        <Gear />
-      </NavLink>
-    </NavLinkWrapper>
-  </Wrapper>
-);
+const Menu = () => {
+  return (
+    <Wrapper>
+      <Loader>
+        <Circle />
+        <Circle color="yellow" />
+        <Circle color="green" />
+      </Loader>
+      <NavLinkWrapper>
+        <NavLink to="/">
+          <Pokeball />
+        </NavLink>
+        <NavLink to="/mini-games/find-pokemon-name">
+          <GameBoy />
+        </NavLink>
+        <NavLink to="/settings">
+          <Gear />
+        </NavLink>
+      </NavLinkWrapper>
+    </Wrapper>
+  );
+};
 
 export default Menu;
