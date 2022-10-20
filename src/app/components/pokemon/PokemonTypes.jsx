@@ -33,15 +33,17 @@ const Type = styled.span`
   display: inline-block;
 `;
 
-const PokemonTypes = ({ types }) => (
-  <Wrapper>
-    {types.map(({ name, url }) => (
-      <Type key={url} style={{ backgroundColor: COLORS[name] }}>
-        {name}
-      </Type>
-    ))}
-  </Wrapper>
-);
+const PokemonTypes = ({ types }) => {
+  return (
+    <Wrapper>
+      {types.map(({ name, url }) => (
+        <Type key={url} style={{ backgroundColor: COLORS[name] }}>
+          {name}
+        </Type>
+      ))}
+    </Wrapper>
+  );
+};
 
 PokemonTypes.propTypes = {
   types: PropTypes.arrayOf(
