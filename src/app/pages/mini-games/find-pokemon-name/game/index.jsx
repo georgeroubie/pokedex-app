@@ -13,6 +13,7 @@ const FindPokemonNameGame = () => {
     if (searchParams.get('only-original-pokemon') === 'yes') {
       return pokemonNames.slice(0, 151);
     }
+
     return pokemonNames;
   }, [pokemonNames, searchParams]);
 
