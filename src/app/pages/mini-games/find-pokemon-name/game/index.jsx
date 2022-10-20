@@ -10,11 +10,20 @@ const FindPokemonNameGame = () => {
   const { pokemonNames } = state;
 
   const pokemons = useMemo(() => {
+    const availablePokemons = pokemonNames.filter(({ name }) => {
+      if (name.includes('-')) {
+        return false;
+      }
+      return true;
+    });
+
     if (searchParams.get('only-original-pokemon') === 'yes') {
-      return pokemonNames.slice(0, 151);
+      // The nidoran-f and nidoran-m are removed that's why instead
+      // of 151 the original pokemons for the game are 149
+      return availablePokemons.slice(0, 149);
     }
 
-    return pokemonNames;
+    return availablePokemons;
   }, [pokemonNames, searchParams]);
 
   return (
