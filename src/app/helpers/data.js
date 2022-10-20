@@ -26,9 +26,8 @@ function transformPokemonRecordsData(data) {
   const { results } = data;
   const regions = ['-galar', '-alola', '-hisui'];
   const variations = ['-mega', '-mega-y', '-mega-x', '-gmax', '-totem', '-zen'];
-  const genders = ['-male', '-female', '-m', '-f'];
   const invalidCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  const filters = [regions, variations, genders].flat();
+  const filters = [regions, variations].flat();
 
   return results.filter(({ name }) => {
     let isPokemonNameNotValid = false;
