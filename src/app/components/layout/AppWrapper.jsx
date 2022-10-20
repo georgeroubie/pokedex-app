@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 const Wrapper = styled.main`
@@ -19,24 +19,24 @@ const Wrapper = styled.main`
   margin: 0 auto;
 `;
 
+function getHeight() {
+  return `${window.innerHeight}px`;
+}
+
 const AppWrapper = ({ children }) => {
   const [height, setHeight] = useState(getHeight());
 
-  const changeHeightValue = useCallback(() => {
-    setHeight(getHeight());
-  }, []);
-
   useEffect(() => {
+    function changeHeightValue() {
+      setHeight(getHeight());
+    }
+
     window.addEventListener('resize', changeHeightValue);
 
     return () => {
       window.removeEventListener('resize', changeHeightValue);
     };
-  }, [changeHeightValue]);
-
-  function getHeight() {
-    return `${window.innerHeight}px`;
-  }
+  }, []);
 
   return <Wrapper $height={height}>{children}</Wrapper>;
 };
