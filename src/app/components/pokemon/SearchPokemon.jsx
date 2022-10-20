@@ -29,9 +29,9 @@ const SearchPokemon = () => {
 
   useEffect(() => {
     if (pokemonName) {
-      const filteredPokemons = pokemonNames.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(pokemonName.toLowerCase()),
-      );
+      const filteredPokemons = pokemonNames.filter((pokemon) => {
+        return pokemon.name.toLowerCase().includes(pokemonName.toLowerCase());
+      });
       setFilteredPokemonNames(filteredPokemons);
     } else {
       setFilteredPokemonNames([]);
