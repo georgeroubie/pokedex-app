@@ -16,11 +16,13 @@ const Frame = styled.div`
   overflow-y: auto;
 `;
 
-const PokedexTop = ({ children }) => (
-  <Main>
-    <Frame>{children}</Frame>
-  </Main>
-);
+const PokedexTop = ({ children }) => {
+  return (
+    <Main>
+      <Frame>{children}</Frame>
+    </Main>
+  );
+};
 
 PokedexTop.propTypes = {
   children: PropTypes.node.isRequired,
