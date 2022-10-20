@@ -8,7 +8,9 @@ const Wrapper = styled.h2`
   margin: 0 0 ${({ theme: { spacing } }) => spacing.xsmall};
 `;
 
-const Subtitle = ({ children }) => <Wrapper>{children}</Wrapper>;
+const Subtitle = ({ children }) => {
+  return <Wrapper>{children}</Wrapper>;
+};
 
 Subtitle.propTypes = {
   children: PropTypes.node.isRequired,
