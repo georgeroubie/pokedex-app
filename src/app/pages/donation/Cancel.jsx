@@ -9,20 +9,22 @@ const Wrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
-const CancelDonation = () => (
-  <PageWrapper>
-    <PokedexTop>
-      <Wrapper>
-        <Title>No worries</Title>
-      </Wrapper>
-    </PokedexTop>
-    <PokedexBottom>
-      <Description>
-        You changed your mind for the donation and that's fine. <br />
-        Those who can’t change their minds can’t change anything.
-      </Description>
-    </PokedexBottom>
-  </PageWrapper>
-);
+const CancelDonation = () => {
+  return (
+    <PageWrapper>
+      <PokedexTop>
+        <Wrapper>
+          <Title>No worries</Title>
+        </Wrapper>
+      </PokedexTop>
+      <PokedexBottom>
+        <Description>
+          You changed your mind for the donation and that's fine. <br />
+          Those who can’t change their minds can’t change anything.
+        </Description>
+      </PokedexBottom>
+    </PageWrapper>
+  );
+};
 
 export default CancelDonation;
