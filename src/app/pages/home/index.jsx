@@ -4,15 +4,17 @@ import PokedexTop from '../../components/layout/PokedexTop';
 import Pokemon from '../../components/pokemon/Pokemon';
 import SearchPokemon from '../../components/pokemon/SearchPokemon';
 
-const Home = () => (
-  <PageWrapper>
-    <PokedexTop>
-      <SearchPokemon />
-    </PokedexTop>
-    <PokedexBottom>
-      <Pokemon />
-    </PokedexBottom>
-  </PageWrapper>
-);
+const Home = () => {
+  return (
+    <PageWrapper>
+      <PokedexTop>
+        <SearchPokemon />
+      </PokedexTop>
+      <PokedexBottom>
+        <Pokemon />
+      </PokedexBottom>
+    </PageWrapper>
+  );
+};
 
 export default Home;
