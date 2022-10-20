@@ -57,7 +57,7 @@ const Line = styled.div`
 `;
 
 const Frame = styled.div`
-  border: ${({ theme: { border } }) => border.size} solid ${({ theme: { colors } }) => colors.borderPrimary};
+  border: ${({ theme: { border, colors } }) => `${border.size} solid ${colors.borderPrimary}`};
   padding: ${({ theme: { spacing } }) => spacing.normal};
   background-color: ${({ theme: { colors } }) => colors.backgroundPrimary};
   width: 100%;
@@ -66,22 +66,24 @@ const Frame = styled.div`
   overflow-y: auto;
 `;
 
-const PokedexBottom = ({ children }) => (
-  <Wrapper>
-    <Frame>{children}</Frame>
-    <TopCircleContainer>
-      <TopCircle />
-      <TopCircle />
-    </TopCircleContainer>
-    <BottomCircle big />
-    <Speaker>
-      <Line />
-      <Line />
-      <Line />
-      <Line />
-    </Speaker>
-  </Wrapper>
-);
+const PokedexBottom = ({ children }) => {
+  return (
+    <Wrapper>
+      <Frame>{children}</Frame>
+      <TopCircleContainer>
+        <TopCircle />
+        <TopCircle />
+      </TopCircleContainer>
+      <BottomCircle big />
+      <Speaker>
+        <Line />
+        <Line />
+        <Line />
+        <Line />
+      </Speaker>
+    </Wrapper>
+  );
+};
 
 PokedexBottom.propTypes = {
   children: PropTypes.node,
