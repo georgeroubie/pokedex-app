@@ -10,20 +10,22 @@ const Wrapper = styled.div`
   padding: ${({ theme: { spacing } }) => spacing.normal};
 `;
 
-const NotFound = () => (
-  <PageWrapper>
-    <PokedexTop>
-      <Wrapper>
-        <Title>Oops :(</Title>
-      </Wrapper>
-    </PokedexTop>
-    <PokedexBottom>
-      <Description>The page you are looking for does not exist!</Description>
-      <Description>
-        Click <Link to="/">here</Link> to go to home page.
-      </Description>
-    </PokedexBottom>
-  </PageWrapper>
-);
+const NotFound = () => {
+  return (
+    <PageWrapper>
+      <PokedexTop>
+        <Wrapper>
+          <Title>Oops :(</Title>
+        </Wrapper>
+      </PokedexTop>
+      <PokedexBottom>
+        <Description>The page you are looking for does not exist!</Description>
+        <Description>
+          Click <Link to="/">here</Link> to go to home page.
+        </Description>
+      </PokedexBottom>
+    </PageWrapper>
+  );
+};
 
 export default NotFound;
