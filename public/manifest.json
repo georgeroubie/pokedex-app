@@ -1,4 +1,5 @@
 {
+  "version": "2.2.0",
   "short_name": "Pokedex",
   "name": "Pokedex",
   "description": "A Pokedex app that will help you in your pokemon journey. Also the Pokedex has the mini game 'Who's that Pokemon'.",
