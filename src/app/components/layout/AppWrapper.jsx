@@ -28,15 +28,23 @@ const AppWrapper = ({ children }) => {
 
   useEffect(() => {
     function changeHeightValue() {
-      setHeight(getHeight());
+      const currentHeight = getHeight();
+      if (height !== currentHeight) {
+        setHeight(currentHeight);
+      }
     }
 
-    window.addEventListener('resize', changeHeightValue);
+    let timeout = null;
+    function resizeListener() {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => changeHeightValue(), 100);
+    }
 
+    window.addEventListener('resize', resizeListener);
     return () => {
-      window.removeEventListener('resize', changeHeightValue);
+      window.removeEventListener('resize', resizeListener);
     };
-  }, []);
+  }, [height]);
 
   return <Wrapper $height={height}>{children}</Wrapper>;
 };
