@@ -9,8 +9,6 @@ const NotFound = lazy(() => import('../pages/not-found'));
 const MiniGames = lazy(() => import('../pages/mini-games'));
 const FindPokemonName = lazy(() => import('../pages/mini-games/find-pokemon-name'));
 const FindPokemonNameGame = lazy(() => import('../pages/mini-games/find-pokemon-name/game'));
-const CompleteDonation = lazy(() => import('../pages/donation/Complete'));
-const CancelDonation = lazy(() => import('../pages/donation/Cancel'));
 
 const Loader = ({ children }) => <Suspense fallback={<PageLoader />}>{children}</Suspense>;
 
@@ -48,22 +46,6 @@ const Routing = () => {
         element={
           <Loader>
             <Settings />
-          </Loader>
-        }
-      />
-      <Route
-        path="/complete-donation"
-        element={
-          <Loader>
-            <CompleteDonation />
-          </Loader>
-        }
-      />
-      <Route
-        path="/cancel-donation"
-        element={
-          <Loader>
-            <CancelDonation />
           </Loader>
         }
       />

@@ -1,6 +1,6 @@
 import { NavLink as _NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import Circle from '../components/shapes/Circle';
+import Circle from '../components/ui/Circle';
 import _GameBoy from '../icons/GameBoy';
 import _Gear from '../icons/Gear';
 import _Pokeball from '../icons/Pokeball';
