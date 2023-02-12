@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import _Circle from '../shapes/Circle';
+import _Circle from '../ui/Circle';
 
 const Wrapper = styled.div`
   position: relative;
